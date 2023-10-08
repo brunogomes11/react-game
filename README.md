@@ -60,11 +60,12 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com ???
             WHERE TO CHECK IF NO LIVES THEN GAME OVER?
 
 
-        QuestionComponent: Display the current question and possible answers.
+        QuizComponent: Display the current question and possible answers.
             If wrong answer, show X mark and moves into the next question, no points, loose 1 life. If correct answer, show tick mark and moves into the next question, add points, lives not affected.
 
             Props:
-                questionData
+                currentQuestion - 
+                answerIndex - When render app, no question is selected yet
                 onCorrectAnswer
                 onWrongAnswer
 
@@ -124,11 +125,11 @@ Certainly! Let's map out the flow of the app:
         - The **TimerComponent** starts the countdown from 20 seconds for the first question.
         - The **ScoreComponent** shows the initial score (likely 0).
         - The **LivesComponent** displays the number of lives the user starts with.
-        - The **QuestionComponent** fetches and displays the first question and answer options from the chosen category.
+        - The **QuizComponent** fetches and displays the first question and answer options from the chosen category.
 
 3. **During Gameplay**:
 
-    - The user selects an answer in the **QuestionComponent**.
+    - The user selects an answer in the **QuizComponent**.
     - If correct:
         - The score updates in the **ScoreComponent**.
         - Move on to the next question.
