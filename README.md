@@ -21,7 +21,7 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com ???
 
     SelectCategoryComponent: Allow user to select the trivia category.
 
-        Suggestion: ReadyToStarteGameComponent
+        Suggestion: ReadyToStartGameComponent
 
         Props:
             onCategoryChange (callback to set the category state in App)
@@ -64,7 +64,7 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com ???
             If wrong answer, show X mark and moves into the next question, no points, loose 1 life. If correct answer, show tick mark and moves into the next question, add points, lives not affected.
 
             Props:
-                currentQuestion - 
+                currentQuestion -
                 answerIndex - When render app, no question is selected yet
                 onCorrectAnswer
                 onWrongAnswer
