@@ -11,7 +11,7 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com ???
 
         score: count the score
 
-        lives: count the active lives. If no more lives, the game is over and it    renders the score board.
+        lives: count the active lives. If no more lives, the game is over and it renders the score board.
 
         timeStatus: beforeQuestionCountDown, duringQuestionCountDown, afterQuestionCountDown
 
@@ -112,50 +112,50 @@ Certainly! Let's map out the flow of the app:
 
 1. **Landing Page**:
 
-    - User arrives at the landing page.
-    - **HeaderComponent** is displayed with the app logo and name.
-    - **HowToPlayComponent** explains how the game works.
-    - **SelectCategoryComponent** allows users to choose a trivia category.
-    - **ReadyToStartGameComponent**: After selecting a category, this component prompts the user to start the game.
+   - User arrives at the landing page.
+   - **HeaderComponent** is displayed with the app logo and name.
+   - **HowToPlayComponent** explains how the game works.
+   - **SelectCategoryComponent** allows users to choose a trivia category.
+   - **ReadyToStartGameComponent**: After selecting a category, this component prompts the user to start the game.
 
 2. **Game Start**:
 
-    - On pressing "Start Game" in **ReadyToStartGameComponent**, the user is redirected to the **GameRoute**.
-    - **GameComponent** initializes:
-        - The **TimerComponent** starts the countdown from 20 seconds for the first question.
-        - The **ScoreComponent** shows the initial score (likely 0).
-        - The **LivesComponent** displays the number of lives the user starts with.
-        - The **QuizComponent** fetches and displays the first question and answer options from the chosen category.
+   - On pressing "Start Game" in **ReadyToStartGameComponent**, the user is redirected to the **GameRoute**.
+   - **GameComponent** initializes:
+     - The **TimerComponent** starts the countdown from 20 seconds for the first question.
+     - The **ScoreComponent** shows the initial score (likely 0).
+     - The **LivesComponent** displays the number of lives the user starts with.
+     - The **QuizComponent** fetches and displays the first question and answer options from the chosen category.
 
 3. **During Gameplay**:
 
-    - The user selects an answer in the **QuizComponent**.
-    - If correct:
-        - The score updates in the **ScoreComponent**.
-        - Move on to the next question.
-    - If wrong:
-        - A life is deducted in the **LivesComponent**.
-        - Move on to the next question.
-    - If the timer in the **TimerComponent** runs out before the user answers:
-        - It acts as a wrong answer.
-        - A life is deducted, and the game proceeds.
+   - The user selects an answer in the **QuizComponent**.
+   - If correct:
+     - The score updates in the **ScoreComponent**.
+     - Move on to the next question.
+   - If wrong:
+     - A life is deducted in the **LivesComponent**.
+     - Move on to the next question.
+   - If the timer in the **TimerComponent** runs out before the user answers:
+     - It acts as a wrong answer.
+     - A life is deducted, and the game proceeds.
 
 4. **End Game Scenarios**:
-    - If the user runs out of lives, **GameOverComponent** is displayed with their score and an option to try again or view the scoreboard.
-    - If there's a set number of questions or a winning condition and the user fulfills it, **YouWinComponent** is displayed with the same options as the Game Over scenario.
+   - If the user runs out of lives, **GameOverComponent** is displayed with their score and an option to try again or view the scoreboard.
+   - If there's a set number of questions or a winning condition and the user fulfills it, **YouWinComponent** is displayed with the same options as the Game Over scenario.
 5. **Scoreboard**:
 
-    - After the game ends, the user has the option to navigate to the **ScoreBoardComponent**.
-    - The user can enter their name and view their score alongside other player scores (if backend integration is done).
+   - After the game ends, the user has the option to navigate to the **ScoreBoardComponent**.
+   - The user can enter their name and view their score alongside other player scores (if backend integration is done).
 
 6. **Returning to Home**:
 
-    - The user can always navigate back to the landing page using a home button or icon.
+   - The user can always navigate back to the landing page using a home button or icon.
 
 7. **Footer**:
-    - Displayed consistently across routes/pages, containing any additional links or information.
+   - Displayed consistently across routes/pages, containing any additional links or information.
 
 ### Future Flow Expansion:
 
 1. **URL Sharing**:
-    - Within the **ScoreBoardComponent**, the user can copy the URL to share their score or the game itself.
+   - Within the **ScoreBoardComponent**, the user can copy the URL to share their score or the game itself.

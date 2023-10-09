@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-
+import { boxQuizBackground } from "./quiz_styles";
 import { Box, Typography, List, ListItem, Button } from "@mui/material";
 
 const Quiz = ({ questions }) => {
@@ -43,14 +43,7 @@ const Quiz = ({ questions }) => {
     return (
         //Box container = div with styles using sx
         <Box
-            sx={{
-                width: 700,
-                backgroundColor: "#0c062e",
-                borderRadius: 4,
-                marginTop: 30,
-                padding: "30px 60px",
-                boxSizing: "border-box",
-            }}
+            sx={boxQuizBackground}
         >
             <Typography //Display the position of the question
                 component="span"
@@ -59,18 +52,17 @@ const Quiz = ({ questions }) => {
             >
                 {currentQuestion + 1}
             </Typography>
+      <Typography //Display the total question
+        component="span"
+        color="white"
+        className="total-question"
+      >
+        /{questions.length}
+      </Typography>
 
-            <Typography //Display the total question
-                component="span"
-                color="white"
-                className="total-question"
-            >
-                /{questions.length}
-            </Typography>
-
-            <Typography color="white" variant="h6">
-                {question}
-            </Typography>
+      <Typography color="white" variant="h6">
+        {question}
+      </Typography>
 
             <List>
                 {choices.map((choice, index) => (
@@ -101,6 +93,7 @@ const Quiz = ({ questions }) => {
             </Typography>
         </Box>
     );
+
 };
 
 export default Quiz;
