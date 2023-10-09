@@ -21,7 +21,7 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com ???
 
     SelectCategoryComponent: Allow user to select the trivia category.
 
-        Suggestion: ReadyToStarteGameComponent
+        Suggestion: ReadyToStartGameComponent
 
         Props:
             onCategoryChange (callback to set the category state in App)
