@@ -16,15 +16,27 @@ const Quiz = ({ questions }) => {
         setCurrentQuestion(currentQuestion + 1);
     };
 
-    const onAnswerClick = (answer, index) => {
+    const onAnswerClick = (choice, index) => {
         setAnswerIndex(index);
 
-        if (answer === correctAnswer) {
+        if (choice === correctAnswer) {
             setFeedback("You got it right!");
             setAnswer(true);
+
+            setTimeout(() => {
+                nextQuestion();
+            }, 3000);
+
+            //Need to disable the other inputs
         } else {
             setFeedback("Wrong answer!");
             setAnswer(false);
+
+            //When user select the answer, go to the next question
+            setTimeout(() => {
+                nextQuestion();
+            }, 3000);
+
         }
     };
 
@@ -81,9 +93,12 @@ const Quiz = ({ questions }) => {
                 ))}
             </List>
 
-            <Typography variant="h6">{feedback}</Typography>
-
-            <Button onClick={nextQuestion}>Next</Button>
+            <Typography
+                variant="h6"
+                sx={{ color: answer === false ? "red" : "green" }}
+            >
+                {feedback}
+            </Typography>
         </Box>
     );
 };
