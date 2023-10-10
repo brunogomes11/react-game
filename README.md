@@ -71,6 +71,12 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com
 
     FooterComponent (Contains any relevant information or links.)
 
+### Project Management
+We are using a trello board to manage and track how this project is going on and 
+
+### Technologies used:
+We utilize a Trello board to effectively manage and monitor the progress of this project and its available here: https://trello.com/b/ybbASD22/trivia-game-project
+
 ### Future Add ons:
 
     LoginRegisterButton Component: Redirects to login/register page.
