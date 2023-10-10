@@ -102,12 +102,14 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com
    - **HowToPlayComponent** explains how the game works.
    - **SelectCategoryComponent** allows users to choose a trivia category.
    - **ReadyToStartGameComponent**: After selecting a category, this component prompts the user to start the game.
-     ![landingpage](./public/landingpagecomponent.png)
+
+      ![landingpage](./public/landingpagecomponent.png)
 
 2. **Game Start**:
 
    - On clicking "Start Game" in **ReadyToStartGameComponent**, the user is redirected to the **GameRoute**.
    - **GameComponent** initializes: - The **TimerComponent** starts the countdown from 20 seconds for the first question. - The **ScoreComponent** shows the initial score (likely 0). - The **LivesComponent** displays the number of lives the user starts with. - The **QuizComponent** fetches and displays the first question and answer options from the chosen category.
+   
      ![readytostart](./public/redytostartgamecomponent.png)
 
 3. **During Gameplay**:
@@ -120,25 +122,28 @@ API: https://opentdb.com/api_config.php?ref=altcademy.com
      - A life is deducted in the **LivesComponent**.
      - Move on to the next question.
    - If the timer in the **TimerComponent** runs out before the user answers: - It acts as a wrong answer. - A life is deducted, and the game proceeds.
-     ![gamecomponent](./public/gamecomponent.png)
+
+      ![gamecomponent](./public/gamecomponent.png)
 
 4. **End Game Scenarios**:
 
    - If the user runs out of lives, **GameOverComponent** is displayed with their score and an option to try again or view the scoreboard.
    - If there's a set number of questions or a winning condition and the user fulfills it, **YouWinComponent** is displayed with the same options as the Game Over scenario.
+
    <!-- change the YouWinComponent to just display the score board, there will be no really win, as long the the player still have lives they will reach the end of the game and enter in the score board -->
 
-5. **Scoreboard**:
+6. **Scoreboard**:
 
    - Once the game ends, the **ScoreBoardComponent** will mount and the player can add their names to the score board.
    - The user can enter their name and view their score alongside other player scores (if backend integration is done).
-     ![scoreboard](./public/scoreboardcomponent.png)
 
-6. **Returning to Home**:
+      ![scoreboard](./public/scoreboardcomponent.png)
+
+7. **Returning to Home**:
 
    - The user can always navigate back to the landing page using a home button or icon.
 
-7. **Footer**:
+8. **Footer**:
    - Displayed consistently across routes/pages, containing any additional links or information.
 
 ### Future Flow Expansion:
