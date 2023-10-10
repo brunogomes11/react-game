@@ -17,21 +17,38 @@ const Question = ({
   const [disabledList, setDisabledList] = useState(false);
   // destructures the current question and assigns its properties to variables
   const { question, choices, correctAnswer } = questions[currentQuestion];
-  const [results1, setResults] = useState(null);
+  const [results, setResults] = useState(null);
 
   const data = () => {
     useEffect(() => {
       axios
         .get("https://opentdb.com/api.php?amount=40&category=15&type=multiple")
         .then((res) => {
-          // console.log(res.data.results);
           setResults(res.data.results);
         });
     }, []);
   };
 
   data();
-  console.log(results1);
+
+  // creates an arr containing the incorrect answers + the correct answer
+  const createAnswersObj = () => {
+    if (results) {
+      let resultsArr = [];
+      for (const key in results) {
+        results[key].incorrect_answers.push(results[key].correct_answer);
+        results[key].incorrect_answers.sort();
+        resultsArr.push(results[key].incorrect_answers);
+      }
+      return resultsArr;
+    }
+  };
+
+  if (results) {
+    const answersData = createAnswersObj();
+    console.log(answersData);
+  }
+
   //Move to next question
   const nextQuestion = () => {
     // checks if the next question exists before attempting to advance to the next question
@@ -75,7 +92,8 @@ const Question = ({
     <>
       <Typography color="white" variant="h6">
         {/* displays the question */}
-        {question}
+        {/* iterave over the quesion object */}
+        {results[0].question}
       </Typography>
       <List>
         {/* list the choices */}
