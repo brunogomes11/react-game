@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import { Box, Typography, List, ListItemButton } from "@mui/material";
 
@@ -16,6 +17,21 @@ const Question = ({
   const [disabledList, setDisabledList] = useState(false);
   // destructures the current question and assigns its properties to variables
   const { question, choices, correctAnswer } = questions[currentQuestion];
+  const [results1, setResults] = useState(null);
+
+  const data = () => {
+    useEffect(() => {
+      axios
+        .get("https://opentdb.com/api.php?amount=40&category=15&type=multiple")
+        .then((res) => {
+          // console.log(res.data.results);
+          setResults(res.data.results);
+        });
+    }, []);
+  };
+
+  data();
+  console.log(results1);
   //Move to next question
   const nextQuestion = () => {
     // checks if the next question exists before attempting to advance to the next question
