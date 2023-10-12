@@ -10,7 +10,7 @@ import axios from "axios";
 function Quiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index
   const [score, setScore] = useState(0);
-  // const [results, setResults] = useState(null);
+  // const [results, setResults] = useState(null); DELETE THIS STATE????
   const [currentQuestion, setCurrentQuestion] = useState({
     question: "",
     choices: [],
@@ -28,6 +28,7 @@ function Quiz() {
   };
 
   // fetchs data to get questions. This need to move into the category component so the user can select the category of the questions
+  // MOVE THIS INTO THE QUESTIONS.JSX???
   useEffect(() => {
     axios
       .get("https://opentdb.com/api.php?amount=1&category=15&type=multiple")
