@@ -15,6 +15,7 @@
     "@mui/material": "^5.14.12",
     "@mui/styled-engine-sc": "^5.14.12",
     "axios": "^0.19.0",
+    "he": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.0.8"

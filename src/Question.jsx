@@ -9,6 +9,8 @@ const Question = ({
   updateQuestionState,
   currentQuestion,
   updateScoreState,
+  answersData,
+  currentQuestionIndex,
 }) => {
   // states
   const [answerIndex, setAnswerIndex] = useState(null); //When someone click on the answer, we can track the index
@@ -16,60 +18,30 @@ const Question = ({
   const [feedback, setFeedback] = useState(null);
   const [disabledList, setDisabledList] = useState(false);
   // destructures the current question and assigns its properties to variables
-  const { question, choices, correctAnswer } = questions[currentQuestion];
-  const [results, setResults] = useState(null);
-
-  const data = () => {
-    useEffect(() => {
-      axios
-        .get("https://opentdb.com/api.php?amount=40&category=15&type=multiple")
-        .then((res) => {
-          setResults(res.data.results);
-        });
-    }, []);
-  };
-
-  data();
-
-  // creates an arr containing the incorrect answers + the correct answer
-  const createAnswersObj = () => {
-    if (results) {
-      let resultsArr = [];
-      for (const key in results) {
-        results[key].incorrect_answers.push(results[key].correct_answer);
-        results[key].incorrect_answers.sort();
-        resultsArr.push(results[key].incorrect_answers);
-      }
-      return resultsArr;
-    }
-  };
-
-  if (results) {
-    const answersData = createAnswersObj();
-    console.log(answersData);
-  }
+  // const { question, choices, correctAnswer } = questions[currentQuestion];
 
   //Move to next question
   const nextQuestion = () => {
     // checks if the next question exists before attempting to advance to the next question
-    if (questions[currentQuestion + 1] !== undefined) {
+    if (questions[currentQuestionIndex + 1] !== undefined) {
       updateQuestionState();
-      //Set to default state
+      // Set to default state
       setAnswerIndex(null);
       setAnswer(null);
       setFeedback(null);
       setDisabledList(false);
     } else {
-      // if the questions is over, render the score board
+      //   // if the questions is over, render the score board
       console.log("render the score board");
     }
   };
+
   // if the answer is correct
   const onAnswerClick = (choice, index) => {
     // updates the state
     setAnswerIndex(index);
     // checks if answer is correct
-    if (choice === correctAnswer) {
+    if (choice === currentQuestion.correct_answer) {
       // updates state
       setFeedback("You got it right!");
       setAnswer(true);
@@ -92,12 +64,12 @@ const Question = ({
     <>
       <Typography color="white" variant="h6">
         {/* displays the question */}
+        {currentQuestion.question}
         {/* iterave over the quesion object */}
-        {results[0].question}
       </Typography>
       <List>
         {/* list the choices */}
-        {choices.map((choice, index) => (
+        {currentQuestion.choices.map((choice, index) => (
           <ListItemButton
             //   callback to check if answer is correct/wrong
             onClick={() => onAnswerClick(choice, index)}

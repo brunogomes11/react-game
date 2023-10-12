@@ -1,12 +1,12 @@
 import { Typography, Grid } from "@mui/material";
 
-function GameHeader({ score, currentQuestion }) {
+function GameHeader({ score, currentQuestionIndex }) {
   return (
     <Grid container className="game-header">
       <Grid>
         <Typography color="white" className="active-question-no">
           {/* Display the current question number */}
-          Question: {currentQuestion + 1}
+          Question: {currentQuestionIndex + 1}
         </Typography>
       </Grid>
       <Grid>
