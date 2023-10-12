@@ -5,44 +5,32 @@ import axios from "axios";
 import { Box, Typography, List, ListItemButton } from "@mui/material";
 
 const Question = ({
-  questions,
   updateQuestionState,
   currentQuestion,
   updateScoreState,
-  answersData,
-  currentQuestionIndex,
 }) => {
-  // states
-  const [answerIndex, setAnswerIndex] = useState(null); //When someone click on the answer, we can track the index
-  const [answer, setAnswer] = useState(null); //Set answer to true if its the right one
+  const [answerIndex, setAnswerIndex] = useState(null); //used to style the choices
+  const [answer, setAnswer] = useState(null); //set answer to true if its the right one
   const [feedback, setFeedback] = useState(null);
   const [disabledList, setDisabledList] = useState(false);
-  // destructures the current question and assigns its properties to variables
-  // const { question, choices, correctAnswer } = questions[currentQuestion];
 
   //Move to next question
   const nextQuestion = () => {
-    // checks if the next question exists before attempting to advance to the next question
-    if (questions[currentQuestionIndex + 1] !== undefined) {
-      updateQuestionState();
-      // Set to default state
-      setAnswerIndex(null);
-      setAnswer(null);
-      setFeedback(null);
-      setDisabledList(false);
-    } else {
-      //   // if the questions is over, render the score board
-      console.log("render the score board");
-    }
+    updateQuestionState();
+    // Set back to default states
+    setAnswerIndex(null);
+    setAnswer(null);
+    setFeedback(null);
+    setDisabledList(false);
   };
 
-  // if the answer is correct
+  // callback triggered when player selects an answer
   const onAnswerClick = (choice, index) => {
-    // updates the state
+    // updates the element style
     setAnswerIndex(index);
     // checks if answer is correct
     if (choice === currentQuestion.correct_answer) {
-      // updates state
+      // updates states
       setFeedback("You got it right!");
       setAnswer(true);
       updateScoreState();
@@ -51,9 +39,9 @@ const Question = ({
       setFeedback("Wrong answer!");
       setAnswer(false);
     }
-    // disable answer clicks
+    // disable player interaction
     setDisabledList(true);
-    //When user select the answer, go to the next question
+    // moves to the next question after 1sec
     setTimeout(() => {
       nextQuestion();
     }, 1000);
@@ -65,10 +53,9 @@ const Question = ({
       <Typography color="white" variant="h6">
         {/* displays the question */}
         {currentQuestion.question}
-        {/* iterave over the quesion object */}
       </Typography>
       <List>
-        {/* list the choices */}
+        {/* list the answer choices */}
         {currentQuestion.choices.map((choice, index) => (
           <ListItemButton
             //   callback to check if answer is correct/wrong
