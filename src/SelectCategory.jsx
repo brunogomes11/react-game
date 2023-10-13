@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  Grid,
-  Box,
-} from "@mui/material";
+import { Card, Typography, Button, Grid, Box } from "@mui/material";
 
-const SelectCategory = () => {
+// insert img into each card using CardMedia, CardContent for the Typogrtaphy, CardActions for the btn
+function SelectCategory() {
   return (
     <Box>
       <Grid
@@ -137,6 +130,6 @@ const SelectCategory = () => {
       </Grid>
     </Box>
   );
-};
+}
 
 export default SelectCategory;
