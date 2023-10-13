@@ -3,6 +3,7 @@ import { theme } from "./app_styles.js";
 import Quiz from "./Quiz";
 import SelectCategory from "./SelectCategory.jsx";
 import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <SelectCategory />
       {/* <Quiz /> */}
+      <Footer />
     </ThemeProvider>
   );
 }
