@@ -1,135 +1,77 @@
-import React from "react";
-import { Card, Typography, Button, Grid, Box } from "@mui/material";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { React, useState } from "react";
 
-// insert img into each card using CardMedia, CardContent for the Typogrtaphy, CardActions for the btn
-function SelectCategory() {
-  return (
-    <Box>
-      <Grid
-        container
-        className="categories-Grid"
-        rowSpacing={5}
-        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-      >
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={15} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Video Game
-            </Typography>
-            <Button size="small">Play</Button>{" "}
-          </Card>
-        </Grid>
+import {
+    Card,
+    CardContent,
+    Typography,
+    Grid,
+    Box,
+    ButtonBase,
+} from "@mui/material";
 
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={11} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Film{" "}
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
+// insert img into each card using CardMedia, CardContent for the Typography, CardActions for the btn
+function SelectCategory({ onCategorySelected }) {
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={10} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Books
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
+    const handleCategorySelect = (categoryId) => {
+        setSelectedCategory(categoryId);
+        onCategorySelected(categoryId);
+    };
 
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={18} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Computer Science{" "}
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
+    const categories = [
+        { value: 15, label: "Video Game" },
+        { value: 14, label: "Film" },
+        { value: 10, label: "Books" },
+        { value: 18, label: "Computer Science" },
+        { value: 19, label: "Mathematics" },
+        { value: 22, label: "Geography" },
+        { value: 25, label: "Arts" },
+        { value: 9, label: "General Knowledge" },
+        { value: 17, label: "Science & Nature" },
+    ];
 
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={19} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
+    return (
+        <Box>
+            <Grid
+                container
+                className="categories-Grid"
+                rowSpacing={5}
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
-              Mathematics{" "}
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
-
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={22} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Geography{" "}
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
-
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={25} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Arts{" "}
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
-
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={9} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              General Knowledge{" "}
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
-
-        <Grid item className="category" xs={6} sm={4}>
-          <Card value={17} color="white">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Sciende & Nature{" "}
-            </Typography>
-            <Button size="small">Play</Button>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
-  );
+                {categories.map((category) => (
+                    <Grid item key={category.value} xs={6} sm={4}>
+                        <Card
+                            sx={{
+                                height: 100,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
+                            <ButtonBase
+                                onClick={() =>
+                                    handleCategorySelect(category.value)
+                                }
+                                style={{ width: "100%", height: "100%" }}
+                            >
+                                <CardContent>
+                                    <Typography
+                                        sx={{ fontSize: 14 }}
+                                        color="text.secondary"
+                                        gutterBottom
+                                    >
+                                        {category.label}
+                                    </Typography>
+                                </CardContent>
+                            </ButtonBase>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Box>
+    );
 }
 
 export default SelectCategory;
