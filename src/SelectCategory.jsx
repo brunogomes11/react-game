@@ -2,7 +2,14 @@
 /* eslint-disable react/prop-types */
 import { React, useState } from "react";
 
-import { Card, Typography, Grid, Box, ButtonBase } from "@mui/material";
+import {
+    Card,
+    CardContent,
+    Typography,
+    Grid,
+    Box,
+    ButtonBase,
+} from "@mui/material";
 
 // insert img into each card using CardMedia, CardContent for the Typography, CardActions for the btn
 function SelectCategory({ onCategorySelected }) {
@@ -12,6 +19,19 @@ function SelectCategory({ onCategorySelected }) {
         setSelectedCategory(categoryId);
         onCategorySelected(categoryId);
     };
+
+    const categories = [
+        { value: 15, label: "Video Game" },
+        { value: 14, label: "Film" },
+        { value: 10, label: "Books" },
+        { value: 18, label: "Computer Science" },
+        { value: 19, label: "Mathematics" },
+        { value: 22, label: "Geography" },
+        { value: 25, label: "Arts" },
+        { value: 9, label: "General Knowledge" },
+        { value: 17, label: "Science & Nature" },
+    ];
+
     return (
         <Box>
             <Grid
@@ -20,131 +40,35 @@ function SelectCategory({ onCategorySelected }) {
                 rowSpacing={5}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={15} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(15)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
+                {categories.map((category) => (
+                    <Grid item key={category.value} xs={6} sm={4}>
+                        <Card
+                            sx={{
+                                height: 100,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
+                            <ButtonBase
+                                onClick={() =>
+                                    handleCategorySelect(category.value)
+                                }
+                                style={{ width: "100%", height: "100%" }}
                             >
-                                Video Game
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={11} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(14)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                Film{" "}
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={10} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(10)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                Books
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={18} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(18)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                Computer Science{" "}
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={19} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(19)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                Mathematics{" "}
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={22} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(22)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                Geography{" "}
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={25} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(25)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                Arts{" "}
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={9} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(9)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                General Knowledge{" "}
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
-
-                <Grid item className="category" xs={6} sm={4}>
-                    <Card value={17} color="white">
-                        <ButtonBase onClick={() => handleCategorySelect(17)}>
-                            <Typography
-                                sx={{ fontSize: 14 }}
-                                color="text.secondary"
-                                gutterBottom
-                            >
-                                Science & Nature{" "}
-                            </Typography>
-                        </ButtonBase>
-                    </Card>
-                </Grid>
+                                <CardContent>
+                                    <Typography
+                                        sx={{ fontSize: 14 }}
+                                        color="text.secondary"
+                                        gutterBottom
+                                    >
+                                        {category.label}
+                                    </Typography>
+                                </CardContent>
+                            </ButtonBase>
+                        </Card>
+                    </Grid>
+                ))}
             </Grid>
         </Box>
     );

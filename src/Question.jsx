@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import axios from "axios";
 
-import { Box, Typography, List, ListItemButton } from "@mui/material";
+import { Typography, List, ListItemButton } from "@mui/material";
 
 const Question = ({ nextQuestion, currentQuestion, updateScoreState }) => {
     const [answer, setAnswer] = useState(null); //set answer to true if its the right one

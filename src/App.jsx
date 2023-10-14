@@ -13,6 +13,8 @@ function App() {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Header />
+            {/* Conditionally render components based on the categoryId state */}
+            {/* When categoryId is null, the SelectCategory component will be shown. Once a category is selected and setCategoryId is called, categoryId will have a value and the Quiz component will be shown instead. */}
             {!categoryId ? (
                 <SelectCategory onCategorySelected={setCategoryId} />
             ) : (

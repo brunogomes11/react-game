@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 import axios from "axios";
 
 function Quiz({ categoryId }) {
-    console.log("Quiz Component Rendering...");
+  
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index
     const [score, setScore] = useState(0);
     // const [results, setResults] = useState(null); DELETE THIS STATE????
