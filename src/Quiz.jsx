@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import he from "he";
 
@@ -7,7 +8,8 @@ import { boxQuizBackground } from "./question_styles";
 import { Box } from "@mui/material";
 import axios from "axios";
 
-function Quiz() {
+function Quiz({ categoryId }) {
+    console.log("Quiz Component Rendering...");
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index
     const [score, setScore] = useState(0);
     // const [results, setResults] = useState(null); DELETE THIS STATE????
@@ -34,7 +36,7 @@ function Quiz() {
     useEffect(() => {
         axios
             .get(
-                "https://opentdb.com/api.php?amount=1&category=15&type=multiple"
+                `https://opentdb.com/api.php?amount=1&category=${categoryId}&type=multiple`
             )
             .then((res) => {
                 // setResults(res.data.results);
@@ -43,7 +45,7 @@ function Quiz() {
 
                 // creates the possible answers arr containing all the incorrect + correct answer
                 const possibleAnswers = [
-                    // destructures the incorrect answers arr and add its elementos to the possible answers arr
+                    // destructures the incorrect answers arr and add its elements to the possible answers arr
                     ...currentData.incorrect_answers,
                     // adds the correct answer to the possible answers arr
                     currentData.correct_answer,
@@ -62,8 +64,9 @@ function Quiz() {
                 // updates the currestQuestion  state
                 setCurrentQuestion(questionObj);
             });
+
         // fetchs data everytime the currectQuestionIndex state changes
-    }, [currentQuestionIndex]);
+    }, [currentQuestionIndex, categoryId]);
 
     // console.log("results state", results);
     console.log("currentQuestion state", currentQuestion);
