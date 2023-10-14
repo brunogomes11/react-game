@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Typography, Button, Grid, Box } from "@mui/material";
 
-// insert img into each card using CardMedia, CardContent for the Typogrtaphy, CardActions for the btn
+// insert img into each card using CardMedia, CardContent for the Typography, CardActions for the btn
 function SelectCategory() {
   return (
     <Box>

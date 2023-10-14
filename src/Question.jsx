@@ -4,86 +4,71 @@ import axios from "axios";
 
 import { Box, Typography, List, ListItemButton } from "@mui/material";
 
-const Question = ({
-  updateQuestionState,
-  currentQuestion,
-  updateScoreState,
-}) => {
-  const [answerIndex, setAnswerIndex] = useState(null); //used to style the choices
-  const [answer, setAnswer] = useState(null); //set answer to true if its the right one
-  const [feedback, setFeedback] = useState(null);
-  const [disabledList, setDisabledList] = useState(false);
+const Question = ({ nextQuestion, currentQuestion, updateScoreState }) => {
+    const [answer, setAnswer] = useState(null); //set answer to true if its the right one
 
-  //Move to next question
-  const nextQuestion = () => {
-    updateQuestionState();
-    // Set back to default states
-    setAnswerIndex(null);
-    setAnswer(null);
-    setFeedback(null);
-    setDisabledList(false);
-  };
+    const isCorrect = answer === currentQuestion.correct_answer;
+    const feedback = isCorrect ? "You got it right!" : "Wrong answer!";
+    const isAnswered = answer !== null;
 
-  // callback triggered when player selects an answer
-  const onAnswerClick = (choice, index) => {
-    // updates the element style
-    setAnswerIndex(index);
-    // checks if answer is correct
-    if (choice === currentQuestion.correct_answer) {
-      // updates states
-      setFeedback("You got it right!");
-      setAnswer(true);
-      updateScoreState();
-    } else {
-      // update states
-      setFeedback("Wrong answer!");
-      setAnswer(false);
-    }
-    // disable player interaction
-    setDisabledList(true);
-    // moves to the next question after 1sec
-    setTimeout(() => {
-      nextQuestion();
-    }, 1000);
-  };
+    // callback triggered when player selects an answer
+    const onAnswerClick = (choice) => {
+        // updates the element style
+        setAnswer(choice);
 
-  return (
-    //Box container = div with styles using sx
-    <>
-      <Typography color="white" variant="h6">
-        {/* displays the question */}
-        {currentQuestion.question}
-      </Typography>
-      <List>
-        {/* list the answer choices */}
-        {currentQuestion.choices.map((choice, index) => (
-          <ListItemButton
-            //   callback to check if answer is correct/wrong
-            onClick={() => onAnswerClick(choice, index)}
-            key={index}
-            disabled={disabledList}
-            sx={{
-              backgroundColor:
-                answerIndex === index ? "secondary.main" : "transparent",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "primary.light",
-              },
-            }}
-          >
-            {choice}
-          </ListItemButton>
-        ))}
-      </List>
+        // checks if answer is correct
+        if (choice === currentQuestion.correct_answer) {
+            updateScoreState();
+        }
 
-      <Typography
-        variant="h6"
-        sx={{ color: answer === false ? "red" : "green" }}
-      >
-        {feedback}
-      </Typography>
-    </>
-  );
+        //Move to next question
+        nextQuestion();
+    };
+
+    useEffect(() => {
+        setAnswer(null);
+    }, [currentQuestion]);
+
+    return (
+        <>
+            <Typography color="white" variant="h6">
+                {/* displays the question */}
+                {currentQuestion.question}
+            </Typography>
+            <List>
+                {/* list the answer choices */}
+                {currentQuestion.choices.map((choice, index) => (
+                    <ListItemButton
+                        //   callback to check if answer is correct/wrong
+                        onClick={() => onAnswerClick(choice)}
+                        key={index}
+                        disabled={isAnswered}
+                        sx={{
+                            backgroundColor:
+                                answer === choice
+                                    ? "secondary.main"
+                                    : "transparent",
+                            color: "white",
+                            "&:hover": {
+                                backgroundColor: "primary.light",
+                            },
+                        }}
+                    >
+                        {choice}
+                    </ListItemButton>
+                ))}
+            </List>
+
+            {isAnswered && (
+                <Typography
+                    variant="h6"
+                    sx={{ color: isCorrect ? "green" : "red" }}
+                >
+                    {feedback}
+                </Typography>
+            )}
+        </>
+    );
 };
 
 export default Question;

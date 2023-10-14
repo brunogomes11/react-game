@@ -6,15 +6,15 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Header />
-      <SelectCategory />
-      {/* <Quiz /> */}
-      <Footer />
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Header />
+            {/* <SelectCategory /> */}
+            <Quiz />
+            <Footer />
+        </ThemeProvider>
+    );
 }
 
 export default App;
