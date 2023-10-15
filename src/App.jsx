@@ -5,6 +5,9 @@ import SelectCategory from "./SelectCategory.jsx";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import { useState } from "react";
+import Scoreboard from "./Scoreboard.jsx";
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
     const [categoryId, setCategoryId] = useState(null);
@@ -12,15 +15,27 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header />
-            {/* Conditionally render components based on the categoryId state */}
-            {/* When categoryId is null, the SelectCategory component will be shown. Once a category is selected and setCategoryId is called, categoryId will have a value and the Quiz component will be shown instead. */}
-            {!categoryId ? (
-                <SelectCategory onCategorySelected={setCategoryId} />
-            ) : (
-                <Quiz categoryId={categoryId} />
-            )}
-            <Footer />
+
+            <Router>
+                <Header />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            !categoryId ? (
+                                <SelectCategory
+                                    onCategorySelected={setCategoryId}
+                                />
+                            ) : (
+                                <Quiz categoryId={categoryId} />
+                            )
+                        }
+                    />
+
+                    <Route path="/scoreboard" element={<Scoreboard />} />
+                </Routes>
+                <Footer />
+            </Router>
         </ThemeProvider>
     );
 }
