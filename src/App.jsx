@@ -7,15 +7,31 @@ import Footer from "./Footer.jsx";
 import { useState } from "react";
 import Scoreboard from "./Scoreboard.jsx";
 import Countdown from "react-countdown";
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [categoryId, setCategoryId] = useState(null);
   const [open, setOpen] = useState(false);
 
+  //   renderer is used to edit how the Countdown displays the time
+  const renderer = ({ seconds }) => {
+    let countadownStyles = { color: "white" };
+    if (seconds <= 10) {
+      countadownStyles = { color: "yellow" };
+    }
+    if (seconds <= 5) {
+      countadownStyles = { color: "red" };
+    }
+    return <div style={countadownStyles}>{seconds} seconds</div>;
+  };
+
+  //   Countdown library
   const timer = (
-    <Countdown date={Date.now() + 5000} onComplete={() => timeUp()} />
+    <Countdown
+      date={Date.now() + 15000}
+      onComplete={() => timeUp()}
+      renderer={renderer}
+    />
   );
 
   const timeUp = () => {
