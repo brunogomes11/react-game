@@ -12,11 +12,7 @@ export default function Header() {
             justifyContent: "space-between",
           }}
         >
-          {/* logo here */}
-          {/* <Typography variant="h6" color="inherit" component="div">
-            ArcadeMaster
-          </Typography> */}
-          <Link to="/" style={linkStyles}>
+          <Link to="/" style={linkStyles} onClick={() => setCategoryId(null)}>
             ArcadeMaster
           </Link>
           <Link to="/scoreboard" style={linkStyles}>
