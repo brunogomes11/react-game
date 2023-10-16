@@ -10,34 +10,32 @@ import Scoreboard from "./Scoreboard.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-    const [categoryId, setCategoryId] = useState(null);
+  const [categoryId, setCategoryId] = useState(null);
 
-    return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
 
-            <Router>
-                <Header />
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            !categoryId ? (
-                                <SelectCategory
-                                    onCategorySelected={setCategoryId}
-                                />
-                            ) : (
-                                <Quiz categoryId={categoryId} />
-                            )
-                        }
-                    />
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              !categoryId ? (
+                <SelectCategory onCategorySelected={setCategoryId} />
+              ) : (
+                <Quiz categoryId={categoryId} />
+              )
+            }
+          />
 
-                    <Route path="/scoreboard" element={<Scoreboard />} />
-                </Routes>
-                <Footer />
-            </Router>
-        </ThemeProvider>
-    );
+          <Route path="/scoreboard" element={<Scoreboard />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </ThemeProvider>
+  );
 }
 
 export default App;
