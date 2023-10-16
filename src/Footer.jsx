@@ -12,6 +12,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { linkStyles } from "./app_styles";
 
 export default function Footer() {
   return (
@@ -27,26 +28,28 @@ export default function Footer() {
             sx={{ display: "flex", flexDirection: "column" }}
           >
             <ListItem component="li" disablePadding>
-              <LinkedInIcon sx={{ ml: ".5rem", mr: ".5rem" }} />
               <ListItemText>
                 <a
                   href="https://www.linkedin.com/in/joao-murara/"
                   target="_blank"
+                  style={linkStyles}
                 >
                   Joao Murara
                 </a>
               </ListItemText>
+              <LinkedInIcon sx={{ ml: ".5rem", mr: ".5rem" }} />
             </ListItem>
             <ListItem component="li" disablePadding>
-              <LinkedInIcon sx={{ ml: ".5rem", mr: ".5rem" }} />
               <ListItemText>
                 <a
                   href="https://www.linkedin.com/in/brunogomes11/"
                   target="_blank"
+                  style={linkStyles}
                 >
                   Bruno Gomes
                 </a>
               </ListItemText>
+              <LinkedInIcon sx={{ ml: ".5rem", mr: ".5rem" }} />
             </ListItem>
           </List>
         </Toolbar>

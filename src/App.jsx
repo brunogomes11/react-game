@@ -11,51 +11,45 @@ import Countdown from "react-countdown";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-    const [categoryId, setCategoryId] = useState(null);
-    const [open, setOpen] = useState(false);
+  const [categoryId, setCategoryId] = useState(null);
+  const [open, setOpen] = useState(false);
 
+  const timer = (
+    <Countdown date={Date.now() + 5000} onComplete={() => timeUp()} />
+  );
 
-    const timer = (
-        <Countdown date={Date.now() + 5000} onComplete={() => timeUp()} />
-    );
+  const timeUp = () => {
+    setOpen(true);
+  };
 
-    const timeUp = () => {
-        setOpen(true);
-    };
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              !categoryId ? (
+                <SelectCategory onCategorySelected={setCategoryId} />
+              ) : (
+                <Quiz
+                  categoryId={categoryId}
+                  timer={timer}
+                  setOpen={setOpen}
+                  open={open}
+                />
+              )
+            }
+          />
 
-    // const handleCloseDialog = () => {
-    //     setOpen(false);
-    //     ;
-    // };
-
-    return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Router>
-                <Header />
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            // gameFinish ? (
-                            //     <Scoreboard />
-                            // ) :
-                            !categoryId ? (
-                                <SelectCategory
-                                    onCategorySelected={setCategoryId}
-                                />
-                            ) : (
-                                <Quiz categoryId={categoryId} timer={timer}  setOpen={setOpen} open={open} />
-                            )
-                        }
-                    />
-
-                    <Route path="/scoreboard" element={<Scoreboard />} />
-                </Routes>
-                <Footer />
-            </Router>
-        </ThemeProvider>
-    );
+          <Route path="/scoreboard" element={<Scoreboard />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </ThemeProvider>
+  );
 }
 
 export default App;
