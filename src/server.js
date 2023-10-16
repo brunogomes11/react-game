@@ -8,13 +8,11 @@ const PORT = 5000;
 const cors = require("cors");
 app.use(cors());
 
+// console.log(process.env.MONGO_URI);
+
 const mongoClient = new MongoClient(
-    "mongodb+srv://admin:7I0GoNEYJg8oxoqD@scoreboard.obc8c0j.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://admin:7I0GoNEYJg8oxoqD@scoreboard.obc8c0j.mongodb.net/?retryWrites=true&w=majority"
     // process.env.MONGO_URI,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }
 );
 
 app.get("/api/scores", async (req, res) => {

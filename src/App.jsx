@@ -6,28 +6,46 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import { useState } from "react";
 import Scoreboard from "./Scoreboard.jsx";
+import Countdown from "react-countdown";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
     const [categoryId, setCategoryId] = useState(null);
+    const [open, setOpen] = useState(false);
+
+
+    const timer = (
+        <Countdown date={Date.now() + 5000} onComplete={() => timeUp()} />
+    );
+
+    const timeUp = () => {
+        setOpen(true);
+    };
+
+    // const handleCloseDialog = () => {
+    //     setOpen(false);
+    //     ;
+    // };
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-
             <Router>
                 <Header />
                 <Routes>
                     <Route
                         path="/"
                         element={
+                            // gameFinish ? (
+                            //     <Scoreboard />
+                            // ) :
                             !categoryId ? (
                                 <SelectCategory
                                     onCategorySelected={setCategoryId}
                                 />
                             ) : (
-                                <Quiz categoryId={categoryId} />
+                                <Quiz categoryId={categoryId} timer={timer}  setOpen={setOpen} open={open} />
                             )
                         }
                     />

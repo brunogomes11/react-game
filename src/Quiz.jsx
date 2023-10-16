@@ -5,11 +5,15 @@ import he from "he";
 import Question from "./Question";
 import GameHeader from "./GameHeader";
 import { boxQuizBackground } from "./question_styles";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
 
-function Quiz({ categoryId }) {
-  
+function Quiz({ categoryId, timer, isTimeOver, setOpen, open }) {
+    const navigate = useNavigate();
+
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index
     const [score, setScore] = useState(0);
     // const [results, setResults] = useState(null); DELETE THIS STATE????
@@ -73,10 +77,26 @@ function Quiz({ categoryId }) {
 
     return (
         <Box sx={boxQuizBackground} className="box">
+            <Dialog open={open}>
+                <DialogTitle>Time`s up!</DialogTitle>
+                <Button
+                    onClick={() => {
+                        setOpen(false);
+                        navigate("/scoreboard");
+                    }}
+                    color="primary"
+                >
+                    OK
+                </Button>
+            </Dialog>
+
             <GameHeader
                 score={score}
                 currentQuestionIndex={currentQuestionIndex}
+                timer={timer}
+                isTimeOver={isTimeOver}
             />
+
             <Question
                 nextQuestion={nextQuestion}
                 updateScoreState={updateScoreState}
