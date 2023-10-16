@@ -5,18 +5,35 @@ import {
     TableHead,
     TableRow,
 } from "@mui/material";
-import { useEffect } from "react";
-
-const sampleData = [
-    { rank: 1, name: "Bruno", points: 500 },
-    { rank: 2, name: "Joao", points: 400 },
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Scoreboard() {
+    const [data, setData] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         axios
-    })
+            .get("http://localhost:5000/api/scores")
+            .then((res) => {
+                console.log(res.data);
+                setData(res.data);
+            })
+            .catch((err) => console.error("Error fetching scores:", err));
+    }, []);
+
+    function getOrdinalSuffix(number) {
+        const lastDigit = number % 10;
+
+        if (lastDigit === 1) {
+            return number + "st";
+        } else if (lastDigit === 2) {
+            return number + "nd";
+        } else if (lastDigit === 3) {
+            return number + "rd";
+        } else {
+            return number + "th";
+        }
+    }
 
     return (
         <Table>
@@ -28,11 +45,11 @@ function Scoreboard() {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {sampleData.map((row) => (
-                    <TableRow key={row.rank}>
-                        <TableCell>{row.rank}</TableCell>
+                {data.map((row, index) => (
+                    <TableRow key={index}>
+                        <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
                         <TableCell>{row.name}</TableCell>
-                        <TableCell>{row.points}</TableCell>
+                        <TableCell>{row.score}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>

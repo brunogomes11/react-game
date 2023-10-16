@@ -5,20 +5,31 @@ require("dotenv").config();
 const app = express();
 const PORT = 5000;
 
-const mongoClient = new MongoClient(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+const cors = require("cors");
+app.use(cors());
+
+const mongoClient = new MongoClient(
+    "mongodb+srv://admin:7I0GoNEYJg8oxoqD@scoreboard.obc8c0j.mongodb.net/?retryWrites=true&w=majority",
+    // process.env.MONGO_URI,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    }
+);
 
 app.get("/api/scores", async (req, res) => {
     try {
         await mongoClient.connect();
         const data = await mongoClient
-            .db("yourDatabaseName")
+            .db("Scoreboard")
             .collection("Scoreboard")
             .find({})
+            // descending score order
+            .sort({ score: -1 })
+            // limit 10
+            .limit(10)
             .toArray();
-
+        console.log(data);
         res.json(data);
     } catch (err) {
         res.status(500).send("Server Error");
