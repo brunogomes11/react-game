@@ -38,7 +38,7 @@ function Scoreboard(score) {
   }
 
   // hard code a new player to test
-  const newPlayer = { name: "new player", score: score };
+  const newPlayer = { name: "", score: score.score };
 
   // creates a new array by combining data and the newPlayer
   let updatedData = [...data, newPlayer];
