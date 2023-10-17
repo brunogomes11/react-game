@@ -78,6 +78,7 @@ function Quiz({ categoryId, timer, open, setOpen, score, setScore }) {
       const closeDialog = setTimeout(() => {
         setOpen(false);
         navigate("/scoreboard");
+        // update a state and at the bottom...
       }, 3000);
 
       return () => clearTimeout(closeDialog);
@@ -95,7 +96,7 @@ function Quiz({ categoryId, timer, open, setOpen, score, setScore }) {
         currentQuestionIndex={currentQuestionIndex}
         timer={timer}
       />
-
+      {/* ...either render the scoreboard or render a new question */}
       <Question
         nextQuestion={nextQuestion}
         updateScoreState={updateScoreState}

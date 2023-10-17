@@ -5,11 +5,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TextField,
-  FormControl,
-  InputLabel,
   Input,
-  FormHelperText,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -17,6 +13,7 @@ import axios from "axios";
 
 function Scoreboard(score) {
   const [data, setData] = useState([]);
+  const [playerName, setPlayerName] = useState("");
 
   useEffect(() => {
     axios
@@ -42,12 +39,34 @@ function Scoreboard(score) {
   }
 
   // hard code a new player to test
-  const newPlayer = { name: "", score: score.score };
+  let newPlayer = { name: "", score: score.score };
 
   // creates a new array by combining data and the newPlayer
   let updatedData = [...data, newPlayer];
   // sorts the new array
   let sortedData = updatedData.sort((a, b) => b.score - a.score);
+
+  // upper case the input as the player types
+  const toUppercaseInput = (e) => {
+    e.target.value = e.target.value.toUpperCase();
+    setPlayerName(e.target.value);
+  };
+
+  const postNewPlayer = (e) => {
+    e.preventDefault();
+    const newPlayer = { name: playerName, score: score.score };
+
+    axios
+      .post("http://localhost:5000/api/scores", newPlayer)
+      .then((res) => {
+        console.log("Data posted successfully:", res.data);
+        setData([...data, newPlayer]);
+        setPlayerName("");
+      })
+      .catch((err) => {
+        console.error("Error posting data:", err);
+      });
+  };
 
   return (
     <Table>
@@ -66,13 +85,15 @@ function Scoreboard(score) {
               <TableCell>{row.name}</TableCell>
             ) : (
               <TableCell>
-                <FormControl>
+                <form onSubmit={postNewPlayer}>
                   <Input
-                    id="my-input"
+                    name="name"
+                    id="playerNameInput"
                     aria-describedby="my-helper-text"
-                    placeholder="player name"
+                    onChange={toUppercaseInput}
+                    required
                   />
-                </FormControl>
+                </form>
               </TableCell>
             )}
             <TableCell>{row.score}</TableCell>
