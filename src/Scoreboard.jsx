@@ -17,7 +17,6 @@ function Scoreboard(score) {
     axios
       .get("http://localhost:5000/api/scores")
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch((err) => console.error("Error fetching scores:", err));
@@ -58,7 +57,7 @@ function Scoreboard(score) {
         {sortedData.map((row, index) => (
           <TableRow key={index}>
             <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
-            <TableCell>{row.name}</TableCell>
+            {row.name && <TableCell>{row.name}</TableCell>}
             <TableCell>{row.score}</TableCell>
           </TableRow>
         ))}
