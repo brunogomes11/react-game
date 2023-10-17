@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
-function Scoreboard() {
+function Scoreboard(score) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -37,6 +37,14 @@ function Scoreboard() {
     }
   }
 
+  // hard code a new player to test
+  const newPlayer = { name: "new player", score: score };
+
+  // creates a new array by combining data and the newPlayer
+  let updatedData = [...data, newPlayer];
+  // sorts the new array
+  let sortedData = updatedData.sort((a, b) => b.score - a.score);
+
   return (
     <Table>
       <TableHead>
@@ -47,7 +55,7 @@ function Scoreboard() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {data.map((row, index) => (
+        {sortedData.map((row, index) => (
           <TableRow key={index}>
             <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
             <TableCell>{row.name}</TableCell>

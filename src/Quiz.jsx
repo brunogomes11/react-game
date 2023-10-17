@@ -10,12 +10,11 @@ import { useNavigate } from "react-router-dom";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 
-function Quiz({ categoryId, timer, open, setOpen }) {
+function Quiz({ categoryId, timer, open, setOpen, score, setScore }) {
   const navigate = useNavigate();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index
-  const [score, setScore] = useState(0);
-  // const [results, setResults] = useState(null); DELETE THIS STATE????
+  // const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState({
     question: "",
     choices: [],
@@ -31,7 +30,9 @@ function Quiz({ categoryId, timer, open, setOpen }) {
 
   // updates the score state. It is triggered by the onAnswerClick call back in the question.jsx when the player gets the answer correct
   const updateScoreState = () => {
-    setScore(score + 10);
+    // setScore(score + 10);
+    let newScore = score + 10;
+    setScore(newScore);
   };
 
   // fetchs data to get questions. This need to move into the category component so the user can select the category of the questions

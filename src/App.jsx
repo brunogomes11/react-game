@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   const [categoryId, setCategoryId] = useState(null);
   const [open, setOpen] = useState(false);
+  const [score, setScore] = useState(0);
 
   //   renderer is used to edit how the Countdown displays the time
   const renderer = ({ seconds }) => {
@@ -33,7 +34,7 @@ function App() {
       renderer={renderer}
     />
   );
-
+  // called when the countdown ends
   const timeUp = () => {
     setOpen(true);
   };
@@ -55,12 +56,14 @@ function App() {
                   timer={timer}
                   setOpen={setOpen}
                   open={open}
+                  score={score}
+                  setScore={setScore}
                 />
               )
             }
           />
 
-          <Route path="/scoreboard" element={<Scoreboard />} />
+          <Route path="/scoreboard" element={<Scoreboard score={score} />} />
         </Routes>
         <Footer />
       </Router>
