@@ -1,35 +1,51 @@
 const express = require("express");
-const MongoClient = require("mongodb").MongoClient;
+const mongoose = require("mongoose");
+// const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
+const Model = require("./model");
 
 const app = express();
+app.use(express.json());
+
 const PORT = 5000;
 
 const cors = require("cors");
 app.use(cors());
 
-const mongoClient = new MongoClient(
-  "mongodb+srv://admin:7I0GoNEYJg8oxoqD@scoreboard.obc8c0j.mongodb.net/?retryWrites=true&w=majority"
-);
+const mongoString = process.env.DATABASE_URL;
+
+mongoose.connect(mongoString);
+const database = mongoose.connection;
+
+database.on("error", (error) => {
+  console.log(error);
+});
+
+database.once("connected", () => {
+  console.log("Database Connected");
+});
+
+app.post("/api/scores", async (req, res) => {
+  const newPlayer = new Model({
+    name: req.body.name,
+    score: req.body.score,
+  });
+
+  try {
+    const dataToSave = await newPlayer.save();
+    res.status(200).json(dataToSave);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: error.message });
+  }
+});
 
 app.get("/api/scores", async (req, res) => {
   try {
-    await mongoClient.connect();
-    const data = await mongoClient
-      .db("Scoreboard")
-      .collection("Scoreboard")
-      .find({})
-      // descending score order
-      .sort({ score: -1 })
-      // limit the 10 highest scores
-      .limit(10)
-      .toArray();
-    console.log(data);
+    const data = await Model.find().sort({ score: -1 }).limit(10);
     res.json(data);
-  } catch (err) {
-    res.status(500).send("Server Error");
-  } finally {
-    await mongoClient.close();
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

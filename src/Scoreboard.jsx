@@ -5,6 +5,11 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TextField,
+  FormControl,
+  InputLabel,
+  Input,
+  FormHelperText,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -57,7 +62,19 @@ function Scoreboard(score) {
         {sortedData.map((row, index) => (
           <TableRow key={index}>
             <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
-            {row.name && <TableCell>{row.name}</TableCell>}
+            {row.name ? (
+              <TableCell>{row.name}</TableCell>
+            ) : (
+              <TableCell>
+                <FormControl>
+                  <Input
+                    id="my-input"
+                    aria-describedby="my-helper-text"
+                    placeholder="player name"
+                  />
+                </FormControl>
+              </TableCell>
+            )}
             <TableCell>{row.score}</TableCell>
           </TableRow>
         ))}
