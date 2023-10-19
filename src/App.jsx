@@ -39,7 +39,6 @@ function App() {
   const timeUp = () => {
     setOpen(true);
   };
-  console.log("app", isGameOver);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

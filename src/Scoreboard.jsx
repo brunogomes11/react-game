@@ -14,6 +14,7 @@ import axios from "axios";
 function Scoreboard({ score, isGameOver }) {
   const [data, setData] = useState([]);
   const [playerName, setPlayerName] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     axios
@@ -38,17 +39,11 @@ function Scoreboard({ score, isGameOver }) {
     }
   }
 
-  console.log("outside if statement", isGameOver);
   let sortedData = data.sort((a, b) => b.score - a.score);
   // // check if isGameOver before create a new player and updating the data
-  if (isGameOver) {
-    console.log("inside if statement", isGameOver);
+  if (isGameOver && !isSubmitted) {
     let newPlayer = { name: "", score };
-
-    // creates a new array by combining data and the newPlayer
     let updatedData = [...data, newPlayer];
-
-    // sorts the new array
     sortedData = updatedData.sort((a, b) => b.score - a.score);
   }
 
@@ -68,6 +63,7 @@ function Scoreboard({ score, isGameOver }) {
         console.log("Data posted successfully:", res.data);
         setData([...data, newPlayer]);
         setPlayerName("");
+        setIsSubmitted(true);
       })
       .catch((err) => {
         console.error("Error posting data:", err);
@@ -93,8 +89,7 @@ function Scoreboard({ score, isGameOver }) {
               <TableCell>
                 {getOrdinalSuffix(sortedData.indexOf(row) + 1)}
               </TableCell>
-              {/* If the row.name is an empty string, render the form */}
-              {row.name === "" ? (
+              {row.name === "" && !isSubmitted ? (
                 <TableCell>
                   <form onSubmit={postNewPlayer}>
                     <Input
@@ -102,6 +97,7 @@ function Scoreboard({ score, isGameOver }) {
                       id="playerNameInput"
                       aria-describedby="my-helper-text"
                       onChange={toUppercaseInput}
+                      minLength="3"
                       required
                     />
                   </form>
