@@ -84,12 +84,16 @@ function Scoreboard({ score, isGameOver }) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {sortedData.map((row, index) =>
-          // check if index < 10
-          index < 10 ? (
+        {sortedData
+          // Filter players: top 10 and any player with an empty name
+          .filter((row, index) => index < 10 || row.name === "")
+          .map((row, index) => (
             <TableRow key={index}>
-              <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
-              {/* if the isGameOver is false, render the row.name only and not the form */}
+              {/* Get the ordinal ranking based on the original sortedData array */}
+              <TableCell>
+                {getOrdinalSuffix(sortedData.indexOf(row) + 1)}
+              </TableCell>
+              {/* If the row.name is an empty string, render the form */}
               {row.name === "" ? (
                 <TableCell>
                   <form onSubmit={postNewPlayer}>
@@ -107,8 +111,7 @@ function Scoreboard({ score, isGameOver }) {
               )}
               <TableCell>{row.score}</TableCell>
             </TableRow>
-          ) : null
-        )}
+          ))}
       </TableBody>
     </Table>
   );
