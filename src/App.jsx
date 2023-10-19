@@ -13,6 +13,7 @@ function App() {
   const [categoryId, setCategoryId] = useState(null);
   const [open, setOpen] = useState(false);
   const [score, setScore] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   //   renderer is used to edit how the Countdown displays the time
   const renderer = ({ seconds }) => {
@@ -48,7 +49,9 @@ function App() {
           <Route
             path="/"
             element={
-              !categoryId ? (
+              isGameOver ? (
+                <Scoreboard score={score} />
+              ) : !categoryId ? (
                 <SelectCategory onCategorySelected={setCategoryId} />
               ) : (
                 <Quiz
@@ -58,12 +61,13 @@ function App() {
                   open={open}
                   score={score}
                   setScore={setScore}
+                  setIsGameOver={setIsGameOver}
                 />
               )
             }
           />
 
-          <Route path="/scoreboard" element={<Scoreboard score={score} />} />
+          {/* <Route path="/scoreboard" element={<Scoreboard score={score} />} /> */}
         </Routes>
         <Footer />
       </Router>
