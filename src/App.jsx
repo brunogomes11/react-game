@@ -39,7 +39,7 @@ function App() {
   const timeUp = () => {
     setOpen(true);
   };
-
+  console.log("app", isGameOver);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -50,7 +50,7 @@ function App() {
             path="/"
             element={
               isGameOver ? (
-                <Scoreboard score={score} />
+                <Scoreboard score={score} isGameOver={isGameOver} />
               ) : !categoryId ? (
                 <SelectCategory onCategorySelected={setCategoryId} />
               ) : (
@@ -67,7 +67,10 @@ function App() {
             }
           />
 
-          {/* <Route path="/scoreboard" element={<Scoreboard score={score} />} /> */}
+          <Route
+            path="/scoreboard"
+            element={<Scoreboard score={score} isGameOver={isGameOver} />}
+          />
         </Routes>
         <Footer />
       </Router>

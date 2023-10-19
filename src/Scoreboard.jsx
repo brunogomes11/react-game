@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
-function Scoreboard(score) {
+function Scoreboard({ score, isGameOver }) {
   const [data, setData] = useState([]);
   const [playerName, setPlayerName] = useState("");
 
@@ -38,13 +38,19 @@ function Scoreboard(score) {
     }
   }
 
-  // hard code a new player to test
-  let newPlayer = { name: "", score: score.score };
+  console.log("outside if statement", isGameOver);
+  let sortedData = data.sort((a, b) => b.score - a.score);
+  // // check if isGameOver before create a new player and updating the data
+  if (isGameOver) {
+    console.log("inside if statement", isGameOver);
+    let newPlayer = { name: "", score };
 
-  // creates a new array by combining data and the newPlayer
-  let updatedData = [...data, newPlayer];
-  // sorts the new array
-  let sortedData = updatedData.sort((a, b) => b.score - a.score);
+    // creates a new array by combining data and the newPlayer
+    let updatedData = [...data, newPlayer];
+
+    // sorts the new array
+    sortedData = updatedData.sort((a, b) => b.score - a.score);
+  }
 
   // upper case the input as the player types
   const toUppercaseInput = (e) => {
@@ -54,7 +60,7 @@ function Scoreboard(score) {
 
   const postNewPlayer = (e) => {
     e.preventDefault();
-    const newPlayer = { name: playerName, score: score.score };
+    const newPlayer = { name: playerName, score };
 
     axios
       .post("http://localhost:5000/api/scores", newPlayer)
@@ -78,27 +84,31 @@ function Scoreboard(score) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {sortedData.map((row, index) => (
-          <TableRow key={index}>
-            <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
-            {row.name ? (
-              <TableCell>{row.name}</TableCell>
-            ) : (
-              <TableCell>
-                <form onSubmit={postNewPlayer}>
-                  <Input
-                    name="name"
-                    id="playerNameInput"
-                    aria-describedby="my-helper-text"
-                    onChange={toUppercaseInput}
-                    required
-                  />
-                </form>
-              </TableCell>
-            )}
-            <TableCell>{row.score}</TableCell>
-          </TableRow>
-        ))}
+        {sortedData.map((row, index) =>
+          // check if index < 10
+          index < 10 ? (
+            <TableRow key={index}>
+              <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
+              {/* if the isGameOver is false, render the row.name only and not the form */}
+              {row.name === "" ? (
+                <TableCell>
+                  <form onSubmit={postNewPlayer}>
+                    <Input
+                      name="name"
+                      id="playerNameInput"
+                      aria-describedby="my-helper-text"
+                      onChange={toUppercaseInput}
+                      required
+                    />
+                  </form>
+                </TableCell>
+              ) : (
+                <TableCell>{row.name}</TableCell>
+              )}
+              <TableCell>{row.score}</TableCell>
+            </TableRow>
+          ) : null
+        )}
       </TableBody>
     </Table>
   );
