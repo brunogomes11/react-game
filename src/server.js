@@ -42,7 +42,7 @@ app.post("/api/scores", async (req, res) => {
 
 app.get("/api/scores", async (req, res) => {
   try {
-    const data = await Model.find().sort({ score: -1 }).limit(10);
+    const data = await Model.find().sort({ score: -1 }).limit(0);
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });

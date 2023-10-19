@@ -11,9 +11,10 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
-function Scoreboard(score) {
+function Scoreboard({ score, isGameOver }) {
   const [data, setData] = useState([]);
   const [playerName, setPlayerName] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     axios
@@ -38,13 +39,13 @@ function Scoreboard(score) {
     }
   }
 
-  // hard code a new player to test
-  let newPlayer = { name: "", score: score.score };
-
-  // creates a new array by combining data and the newPlayer
-  let updatedData = [...data, newPlayer];
-  // sorts the new array
-  let sortedData = updatedData.sort((a, b) => b.score - a.score);
+  let sortedData = data.sort((a, b) => b.score - a.score);
+  // // check if isGameOver before create a new player and updating the data
+  if (isGameOver && !isSubmitted) {
+    let newPlayer = { name: "", score };
+    let updatedData = [...data, newPlayer];
+    sortedData = updatedData.sort((a, b) => b.score - a.score);
+  }
 
   // upper case the input as the player types
   const toUppercaseInput = (e) => {
@@ -54,7 +55,7 @@ function Scoreboard(score) {
 
   const postNewPlayer = (e) => {
     e.preventDefault();
-    const newPlayer = { name: playerName, score: score.score };
+    const newPlayer = { name: playerName, score };
 
     axios
       .post("http://localhost:5000/api/scores", newPlayer)
@@ -62,6 +63,7 @@ function Scoreboard(score) {
         console.log("Data posted successfully:", res.data);
         setData([...data, newPlayer]);
         setPlayerName("");
+        setIsSubmitted(true);
       })
       .catch((err) => {
         console.error("Error posting data:", err);
@@ -78,27 +80,34 @@ function Scoreboard(score) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {sortedData.map((row, index) => (
-          <TableRow key={index}>
-            <TableCell>{getOrdinalSuffix(index + 1)}</TableCell>
-            {row.name ? (
-              <TableCell>{row.name}</TableCell>
-            ) : (
+        {sortedData
+          // Filter players: top 10 and any player with an empty name
+          .filter((row, index) => index < 10 || row.name === "")
+          .map((row, index) => (
+            <TableRow key={index}>
+              {/* Get the ordinal ranking based on the original sortedData array */}
               <TableCell>
-                <form onSubmit={postNewPlayer}>
-                  <Input
-                    name="name"
-                    id="playerNameInput"
-                    aria-describedby="my-helper-text"
-                    onChange={toUppercaseInput}
-                    required
-                  />
-                </form>
+                {getOrdinalSuffix(sortedData.indexOf(row) + 1)}
               </TableCell>
-            )}
-            <TableCell>{row.score}</TableCell>
-          </TableRow>
-        ))}
+              {row.name === "" && !isSubmitted ? (
+                <TableCell>
+                  <form onSubmit={postNewPlayer}>
+                    <Input
+                      name="name"
+                      id="playerNameInput"
+                      aria-describedby="my-helper-text"
+                      onChange={toUppercaseInput}
+                      minLength="3"
+                      required
+                    />
+                  </form>
+                </TableCell>
+              ) : (
+                <TableCell>{row.name}</TableCell>
+              )}
+              <TableCell>{row.score}</TableCell>
+            </TableRow>
+          ))}
       </TableBody>
     </Table>
   );

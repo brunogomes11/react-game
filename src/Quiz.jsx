@@ -10,8 +10,16 @@ import { useNavigate } from "react-router-dom";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 
-function Quiz({ categoryId, timer, open, setOpen, score, setScore }) {
-  const navigate = useNavigate();
+function Quiz({
+  categoryId,
+  timer,
+  open,
+  setOpen,
+  score,
+  setScore,
+  setIsGameOver,
+}) {
+  // const navigate = useNavigate();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index
   // const [score, setScore] = useState(0);
@@ -77,13 +85,18 @@ function Quiz({ categoryId, timer, open, setOpen, score, setScore }) {
     if (open) {
       const closeDialog = setTimeout(() => {
         setOpen(false);
-        navigate("/scoreboard");
+        setIsGameOver(true);
+        // navigate("/scoreboard");
         // update a state and at the bottom...
       }, 3000);
 
       return () => clearTimeout(closeDialog);
     }
-  }, [open, setOpen, navigate]);
+  }, [
+    open,
+    setOpen,
+    // navigate
+  ]);
 
   return (
     <Box sx={boxQuizBackground} className="box">
