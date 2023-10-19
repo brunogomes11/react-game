@@ -13,10 +13,7 @@ import {
 
 // insert img into each card using CardMedia, CardContent for the Typography, CardActions for the btn
 function SelectCategory({ onCategorySelected }) {
-  // const [selectedCategory, setSelectedCategory] = useState(null);
-
   const handleCategorySelect = (categoryId) => {
-    // setSelectedCategory(categoryId);
     onCategorySelected(categoryId);
   };
 
