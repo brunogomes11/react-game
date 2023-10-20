@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 
 import { Typography, List, ListItemButton } from "@mui/material";
 
-const Question = ({ nextQuestion, currentQuestion, updateScoreState }) => {
+const Question = ({
+    nextQuestion,
+    currentQuestion,
+    updateScoreState,
+    decrementLives,
+    resetTimer,
+}) => {
     const [answer, setAnswer] = useState(null); //set answer to true if its the right one
 
     const isCorrect = answer === currentQuestion.correct_answer;
@@ -18,6 +24,9 @@ const Question = ({ nextQuestion, currentQuestion, updateScoreState }) => {
         // checks if answer is correct
         if (choice === currentQuestion.correct_answer) {
             updateScoreState();
+            resetTimer();
+        } else {
+            decrementLives();
         }
 
         //Move to next question
