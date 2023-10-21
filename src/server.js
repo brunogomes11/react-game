@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
+const ViteExpress = require("vite-express");
+
 // const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 const Model = require("./model");
@@ -50,6 +52,6 @@ app.get("/api/scores", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+ViteExpress.listen(app, PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
