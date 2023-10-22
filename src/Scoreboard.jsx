@@ -8,19 +8,22 @@ import {
     Input,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import Spinner from "./Spinner";
 
 import axios from "axios";
 
-function Scoreboard({ score, isGameOver }) {
+function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
     const [data, setData] = useState([]);
     const [playerName, setPlayerName] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         axios
             .get("/api/scores")
             .then((res) => {
                 setData(res.data);
+                setIsLoading(false);
             })
             .catch((err) => console.error("Error fetching scores:", err));
     }, []);
@@ -71,45 +74,50 @@ function Scoreboard({ score, isGameOver }) {
     };
 
     return (
-        <Table>
-            <TableHead>
-                <TableRow>
-                    <TableCell>Rank</TableCell>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Points</TableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {sortedData
-                    // Filter players: top 10 and any player with an empty name
-                    .filter((row, index) => index < 10 || row.name === "")
-                    .map((row, index) => (
-                        <TableRow key={index}>
-                            {/* Get the ordinal ranking based on the original sortedData array */}
-                            <TableCell>
-                                {getOrdinalSuffix(sortedData.indexOf(row) + 1)}
-                            </TableCell>
-                            {row.name === "" && !isSubmitted ? (
+        <>
+            <Spinner open={isLoading} />
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Rank</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Points</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {sortedData
+                        // Filter players: top 10 and any player with an empty name
+                        .filter((row, index) => index < 10 || row.name === "")
+                        .map((row, index) => (
+                            <TableRow key={index}>
+                                {/* Get the ordinal ranking based on the original sortedData array */}
                                 <TableCell>
-                                    <form onSubmit={postNewPlayer}>
-                                        <Input
-                                            name="name"
-                                            id="playerNameInput"
-                                            aria-describedby="my-helper-text"
-                                            onChange={toUppercaseInput}
-                                            minLength="3"
-                                            required
-                                        />
-                                    </form>
+                                    {getOrdinalSuffix(
+                                        sortedData.indexOf(row) + 1
+                                    )}
                                 </TableCell>
-                            ) : (
-                                <TableCell>{row.name}</TableCell>
-                            )}
-                            <TableCell>{row.score}</TableCell>
-                        </TableRow>
-                    ))}
-            </TableBody>
-        </Table>
+                                {row.name === "" && !isSubmitted ? (
+                                    <TableCell>
+                                        <form onSubmit={postNewPlayer}>
+                                            <Input
+                                                name="name"
+                                                id="playerNameInput"
+                                                aria-describedby="my-helper-text"
+                                                onChange={toUppercaseInput}
+                                                minLength="3"
+                                                required
+                                            />
+                                        </form>
+                                    </TableCell>
+                                ) : (
+                                    <TableCell>{row.name}</TableCell>
+                                )}
+                                <TableCell>{row.score}</TableCell>
+                            </TableRow>
+                        ))}
+                </TableBody>
+            </Table>
+        </>
     );
 }
 

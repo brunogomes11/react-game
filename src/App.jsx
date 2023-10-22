@@ -37,6 +37,8 @@ function App() {
                                 <Scoreboard
                                     score={score}
                                     isGameOver={isGameOver}
+                                    isLoading={isLoading}
+                                    setIsLoading={setIsLoading}
                                 />
                             ) : !categoryId ? (
                                 <SelectCategory
@@ -57,7 +59,12 @@ function App() {
                     <Route
                         path="/scoreboard"
                         element={
-                            <Scoreboard score={score} isGameOver={isGameOver} />
+                            <Scoreboard
+                                score={score}
+                                isGameOver={isGameOver}
+                                isLoading={isLoading}
+                                setIsLoading={setIsLoading}
+                            />
                         }
                     />
                 </Routes>
