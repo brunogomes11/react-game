@@ -5,10 +5,10 @@ import axios from "axios";
 import he from "he";
 import Question from "./Question";
 import GameHeader from "./GameHeader";
-import { boxQuizBackground } from "./question_styles";
+import { boxQuizBackground } from "./quiz_styles";
 import { Box, Dialog, DialogTitle } from "@mui/material";
 
-const COUNTDOWN_TIME = 15000;
+const COUNTDOWN_TIME = 99000000000;
 
 function Quiz({ categoryId, score, setScore, setIsGameOver, setIsLoading }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index
