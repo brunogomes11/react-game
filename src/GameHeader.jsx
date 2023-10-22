@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Typography, Grid } from "@mui/material";
-// import fullHeart from "../public/fullHeart.png";
-// import clearHeart from "../public/clearHeart.png";
 
 function GameHeader({ score, currentQuestionIndex, timer, remainingLives }) {
     return (
