@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ThemeProvider, CssBaseline } from "@mui/material";
-import { theme } from "./app_styles.js";
+import { ThemeProvider, CssBaseline, Box } from "@mui/material";
+import { theme, arcadeInterfaceStyles } from "./app_styles.js";
 import Quiz from "./Quiz";
 import SelectCategory from "./SelectCategory";
 import Header from "./Header";
@@ -28,7 +28,7 @@ function App() {
             <Router>
                 <Header />
                 <Spinner open={isLoading} />
-
+                <Box sx={arcadeInterfaceStyles} className="arcadeImage"></Box>
                 <Routes>
                     <Route
                         path="/"
@@ -68,6 +68,7 @@ function App() {
                         }
                     />
                 </Routes>
+
                 <Footer />
             </Router>
         </ThemeProvider>
