@@ -18,12 +18,14 @@ export const theme = createTheme({
                     url("/background.jpeg")`,
                     backgroundSize: "contain, cover",
                     backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
                     display: "flex",
                     justifyContent: "center",
+                    alignItems: "center",
                     margin: "0 auto",
                     padding: "0 50px",
                     height: "100vh",
-                    backgroundPosition: "center",
+                    minHeight: "600px",
                 },
             },
         },
@@ -31,9 +33,3 @@ export const theme = createTheme({
 });
 
 export const linkStyles = { textDecoration: "none", color: "inherit" };
-
-export const arcadeInterfaceStyles = {
-    backgroundColor: "#23143c",
-    backgroundSize: "cover",
-    width: "1200px",
-};

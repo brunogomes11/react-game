@@ -76,12 +76,24 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
     return (
         <>
             <Spinner open={isLoading} />
-            <Table>
+            <Table sx={{ marginBottom: "200px", width: "100%" }}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Rank</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Points</TableCell>
+                        <TableCell
+                            sx={{ color: "success.main", padding: "0 50px" }}
+                        >
+                            Rank
+                        </TableCell>
+                        <TableCell
+                            sx={{ color: "info.main", padding: "0 50px" }}
+                        >
+                            Name
+                        </TableCell>
+                        <TableCell
+                            sx={{ color: "warning.main", padding: "0 50px" }}
+                        >
+                            Points
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -91,13 +103,13 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                         .map((row, index) => (
                             <TableRow key={index}>
                                 {/* Get the ordinal ranking based on the original sortedData array */}
-                                <TableCell>
+                                <TableCell sx={{ color: "success.main" }}>
                                     {getOrdinalSuffix(
                                         sortedData.indexOf(row) + 1
                                     )}
                                 </TableCell>
                                 {row.name === "" && !isSubmitted ? (
-                                    <TableCell>
+                                    <TableCell sx={{ color: "info.main" }}>
                                         <form onSubmit={postNewPlayer}>
                                             <Input
                                                 name="name"
@@ -110,9 +122,22 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                                         </form>
                                     </TableCell>
                                 ) : (
-                                    <TableCell>{row.name}</TableCell>
+                                    <TableCell
+                                        sx={{
+                                            color: "info.main",
+                                            align: "center",
+                                        }}
+                                    >
+                                        {row.name}
+                                    </TableCell>
                                 )}
-                                <TableCell>{row.score}</TableCell>
+                                <TableCell
+                                    sx={{
+                                        color: "warning.main",
+                                    }}
+                                >
+                                    {row.score}
+                                </TableCell>
                             </TableRow>
                         ))}
                 </TableBody>

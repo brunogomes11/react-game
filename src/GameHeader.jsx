@@ -3,14 +3,18 @@ import { Typography, Grid } from "@mui/material";
 
 function GameHeader({ score, currentQuestionIndex, timer, remainingLives }) {
     return (
-        <Grid container className="game-header">
-            <Grid>
-                <Typography color="white" className="active-question-no">
+        <Grid container className="game-header" spacing={4} marginBottom="50px">
+            <Grid item xs={6}>
+                <Typography
+                    color="white"
+                    align="center"
+                    className="active-question-no"
+                >
                     {/* Display the current question number */}
                     Question: {currentQuestionIndex + 1}
                 </Typography>
             </Grid>
-            <Grid>
+            <Grid item xs={6}>
                 <Typography
                     color="white"
                     align="center"
@@ -20,8 +24,10 @@ function GameHeader({ score, currentQuestionIndex, timer, remainingLives }) {
                     Score:{score}
                 </Typography>
             </Grid>
-            <Grid>{timer}</Grid>
-            <Grid>
+            <Grid item xs={6} align="center">
+                {timer}
+            </Grid>
+            <Grid item xs={6} align="center">
                 {" "}
                 {Array.from({ length: remainingLives }).map((num, index) => (
                     <img
@@ -32,7 +38,7 @@ function GameHeader({ score, currentQuestionIndex, timer, remainingLives }) {
                                 : "/clearHeart.png"
                         }
                         alt="Heart"
-                        width={30} // adjust size as needed
+                        width={30}
                     />
                 ))}
             </Grid>

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-import { Typography, List, ListItemButton } from "@mui/material";
+import { Typography, List, ListItemButton, Grid } from "@mui/material";
 
 const Question = ({
     nextQuestion,
@@ -43,10 +43,12 @@ const Question = ({
                 {/* displays the question */}
                 {currentQuestion.question}
             </Typography>
-            <List>
+            <Grid container spacing={2} marginTop="30px">
                 {/* list the answer choices */}
                 {currentQuestion.choices.map((choice, index) => (
-                    <ListItemButton
+                    <Grid
+                        item
+                        xs={6}
                         //   callback to check if answer is correct/wrong
                         onClick={() => onAnswerClick(choice)}
                         key={index}
@@ -63,9 +65,9 @@ const Question = ({
                         }}
                     >
                         {choice}
-                    </ListItemButton>
+                    </Grid>
                 ))}
-            </List>
+            </Grid>
 
             {isAnswered && (
                 <Typography

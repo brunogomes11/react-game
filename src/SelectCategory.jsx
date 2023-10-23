@@ -33,11 +33,11 @@ function SelectCategory({ onCategorySelected }) {
         <Grid
             container
             className="categories-Grid"
-            rowSpacing={5}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            spacing={3}
+            sx={{ marginTop: "-200px", width: 700 }}
         >
             {categories.map((category) => (
-                <Grid item key={category.value} xs={6} sm={4}>
+                <Grid item key={category.value} xs={4}>
                     <Card
                         sx={{
                             height: 100,
@@ -48,7 +48,7 @@ function SelectCategory({ onCategorySelected }) {
                     >
                         <ButtonBase
                             onClick={() => handleCategorySelect(category.value)}
-                            style={{ width: "100%", height: "100%" }}
+                            sx={{ width: "100%", height: "100%" }}
                         >
                             <CardContent>
                                 <Typography
