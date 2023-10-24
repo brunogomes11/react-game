@@ -5,6 +5,7 @@ import {
     TableCell,
     TableHead,
     TableRow,
+    TableContainer,
     Input,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -76,72 +77,108 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
     return (
         <>
             <Spinner open={isLoading} />
-            <Table sx={{ marginBottom: "200px", width: "100%" }}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell
-                            sx={{ color: "success.main", padding: "0 50px" }}
-                        >
-                            Rank
-                        </TableCell>
-                        <TableCell
-                            sx={{ color: "info.main", padding: "0 50px" }}
-                        >
-                            Name
-                        </TableCell>
-                        <TableCell
-                            sx={{ color: "warning.main", padding: "0 50px" }}
-                        >
-                            Points
-                        </TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {sortedData
-                        // Filter players: top 10 and any player with an empty name
-                        .filter((row, index) => index < 10 || row.name === "")
-                        .map((row, index) => (
-                            <TableRow key={index}>
-                                {/* Get the ordinal ranking based on the original sortedData array */}
-                                <TableCell sx={{ color: "success.main" }}>
-                                    {getOrdinalSuffix(
-                                        sortedData.indexOf(row) + 1
-                                    )}
-                                </TableCell>
-                                {row.name === "" && !isSubmitted ? (
-                                    <TableCell sx={{ color: "info.main" }}>
-                                        <form onSubmit={postNewPlayer}>
-                                            <Input
-                                                name="name"
-                                                id="playerNameInput"
-                                                aria-describedby="my-helper-text"
-                                                onChange={toUppercaseInput}
-                                                minLength="3"
-                                                required
-                                            />
-                                        </form>
-                                    </TableCell>
-                                ) : (
+            <TableContainer
+                sx={{
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                }}
+            >
+                <Table sx={{ border: "none" }}>
+                    <TableHead sx={{ border: "none" }}>
+                        <TableRow sx={{ border: "none" }}>
+                            <TableCell
+                                align="center"
+                                sx={{
+                                    color: "success.main",
+                                    border: "none",
+                                }}
+                            >
+                                Rank
+                            </TableCell>
+                            <TableCell
+                                align="center"
+                                sx={{ color: "info.main", border: "none" }}
+                            >
+                                Name
+                            </TableCell>
+                            <TableCell
+                                align="center"
+                                sx={{
+                                    color: "warning.main",
+                                    border: "none",
+                                }}
+                            >
+                                Points
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody sx={{ border: "none" }}>
+                        {sortedData
+                            // Filter players: top 10 and any player with an empty name
+                            .filter(
+                                (row, index) => index < 10 || row.name === ""
+                            )
+                            .map((row, index) => (
+                                <TableRow key={index} sx={{ border: "none" }}>
+                                    {/* Get the ordinal ranking based on the original sortedData array */}
                                     <TableCell
+                                        align="center"
                                         sx={{
-                                            color: "info.main",
-                                            align: "center",
+                                            color: "success.main",
+                                            border: "none",
                                         }}
                                     >
-                                        {row.name}
+                                        {getOrdinalSuffix(
+                                            sortedData.indexOf(row) + 1
+                                        )}
                                     </TableCell>
-                                )}
-                                <TableCell
-                                    sx={{
-                                        color: "warning.main",
-                                    }}
-                                >
-                                    {row.score}
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                </TableBody>
-            </Table>
+                                    {row.name === "" && !isSubmitted ? (
+                                        <TableCell
+                                            align="center"
+                                            sx={{
+                                                color: "info.main",
+                                                border: "none",
+                                            }}
+                                        >
+                                            <form onSubmit={postNewPlayer}>
+                                                <Input
+                                                    name="name"
+                                                    id="playerNameInput"
+                                                    aria-describedby="my-helper-text"
+                                                    onChange={toUppercaseInput}
+                                                    minLength="3"
+                                                    required
+                                                    border="none"
+                                                />
+                                            </form>
+                                        </TableCell>
+                                    ) : (
+                                        <TableCell
+                                            align="center"
+                                            sx={{
+                                                color: "info.main",
+                                                border: "none",
+                                            }}
+                                        >
+                                            {row.name}
+                                        </TableCell>
+                                    )}
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            color: "warning.main",
+                                            align: "center",
+                                            border: "none",
+                                        }}
+                                    >
+                                        {row.score}
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </>
     );
 }

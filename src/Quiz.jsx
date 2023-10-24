@@ -5,7 +5,6 @@ import axios from "axios";
 import he from "he";
 import Question from "./Question";
 import GameHeader from "./GameHeader";
-import { boxQuizBackground } from "./quiz_styles";
 import { Box, Dialog, DialogTitle } from "@mui/material";
 
 const COUNTDOWN_TIME = 99000000000;
@@ -129,7 +128,20 @@ function Quiz({ categoryId, score, setScore, setIsGameOver, setIsLoading }) {
     };
 
     return (
-        <Box sx={boxQuizBackground} className="box">
+        <Box
+            sx={{
+                marginTop: {
+                    md: 5,
+                    lg: 10,
+                    xll: 20,
+                },
+                paddingLeft: {
+                    md: 3,
+                    xl: 5,
+                },
+            }}
+            className="box"
+        >
             <Dialog open={open}>
                 <DialogTitle>Game Over</DialogTitle>
             </Dialog>

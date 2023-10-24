@@ -11,7 +11,7 @@ function GameHeader({ score, currentQuestionIndex, timer, remainingLives }) {
                     className="active-question-no"
                 >
                     {/* Display the current question number */}
-                    Question: {currentQuestionIndex + 1}
+                    Question {currentQuestionIndex + 1}
                 </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -21,19 +21,18 @@ function GameHeader({ score, currentQuestionIndex, timer, remainingLives }) {
                     className="total-score"
                 >
                     {/* Display the total score */}
-                    Score:{score}
+                    Score {score}
                 </Typography>
             </Grid>
             <Grid item xs={6} align="center">
                 {timer}
             </Grid>
             <Grid item xs={6} align="center">
-                {" "}
-                {Array.from({ length: remainingLives }).map((num, index) => (
+                {[1, 2, 3, 4, 5].map((el, index) => (
                     <img
                         key={index}
                         src={
-                            index < remainingLives
+                            el <= remainingLives
                                 ? "/fullHeart.png"
                                 : "/clearHeart.png"
                         }
