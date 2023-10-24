@@ -34,16 +34,30 @@ function SelectCategory({ onCategorySelected }) {
             container
             className="categories-Grid"
             spacing={3}
-            sx={{ marginTop: "-200px", width: 700 }}
+            sx={{
+                marginTop: {
+                    md: 5,
+                    lg: 10,
+                    xll: 30,
+                    xlll: 40,
+                },
+                paddingLeft: {
+                    md: 3,
+                    xl: 5,
+                },
+            }}
         >
             {categories.map((category) => (
                 <Grid item key={category.value} xs={4}>
                     <Card
                         sx={{
-                            height: 100,
+                            height: "100%",
+                            minHeight: "5rem",
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
+                            backgroundColor: "rgba(255, 255, 255, 0.25)",
+                            borderRadius: ".2rem",
                         }}
                     >
                         <ButtonBase
@@ -53,7 +67,7 @@ function SelectCategory({ onCategorySelected }) {
                             <CardContent>
                                 <Typography
                                     sx={{ fontSize: 14 }}
-                                    color="text.secondary"
+                                    color="white"
                                     gutterBottom
                                 >
                                     {category.label}

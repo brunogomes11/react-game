@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-import { Typography, List, ListItemButton, Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 
 const Question = ({
     nextQuestion,
@@ -38,12 +38,33 @@ const Question = ({
     }, [currentQuestion]);
 
     return (
-        <>
-            <Typography color="white" variant="h6">
-                {/* displays the question */}
-                {currentQuestion.question}
-            </Typography>
-            <Grid container spacing={2} marginTop="30px">
+        <Grid
+            className="questionComponent"
+            container
+            spacing={1}
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            <Grid item className="question">
+                <Typography color="white" variant="h6" align="center">
+                    {/* displays the question */}
+                    {currentQuestion.question}
+                </Typography>
+            </Grid>
+
+            <Grid
+                item
+                className="choices"
+                container
+                spacing={2}
+                marginTop="30px"
+                align="center"
+                sx={{
+                    pointerEvents: !isAnswered ? "auto" : "none",
+                }}
+            >
                 {/* list the answer choices */}
                 {currentQuestion.choices.map((choice, index) => (
                     <Grid
@@ -52,7 +73,6 @@ const Question = ({
                         //   callback to check if answer is correct/wrong
                         onClick={() => onAnswerClick(choice)}
                         key={index}
-                        disabled={isAnswered}
                         sx={{
                             backgroundColor:
                                 answer === choice
@@ -62,6 +82,7 @@ const Question = ({
                             "&:hover": {
                                 backgroundColor: "primary.light",
                             },
+                            justifyContent: "center",
                         }}
                     >
                         {choice}
@@ -69,15 +90,17 @@ const Question = ({
                 ))}
             </Grid>
 
-            {isAnswered && (
-                <Typography
-                    variant="h6"
-                    sx={{ color: isCorrect ? "green" : "red" }}
-                >
-                    {feedback}
-                </Typography>
-            )}
-        </>
+            <Grid item className="feedback">
+                {isAnswered && (
+                    <Typography
+                        variant="h6"
+                        sx={{ color: isCorrect ? "green" : "red" }}
+                    >
+                        {feedback}
+                    </Typography>
+                )}
+            </Grid>
+        </Grid>
     );
 };
 

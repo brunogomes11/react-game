@@ -4,8 +4,8 @@ import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import { theme } from "./app_styles.js";
 import Quiz from "./Quiz";
 import SelectCategory from "./SelectCategory";
-import Header from "./Header";
-import Footer from "./Footer";
+// import Header from "./Header";
+// import Footer from "./Footer";
 import Scoreboard from "./Scoreboard";
 import Spinner from "./Spinner.jsx";
 
@@ -25,52 +25,78 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Router>
-                {/* <Header /> */}
-                <Spinner open={isLoading} />
-                <Box className="arcadeImage"></Box>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            isGameOver ? (
+            <Box
+                sx={{
+                    width: {
+                        xs: "auto", //0px
+                        sm: 600, //600px
+                        md: 650, //900px
+                        lg: 700, //1200px
+                        xl: 750, //1536px
+                        xll: 780, //1850px
+                        xlll: 900, //2200px
+                    },
+                    height: {
+                        xs: "auto", //0px
+                        sm: 400, //600px
+                        md: 450, //900px
+                        lg: 500, //1200px
+                        xl: 600, //1536px
+                        xll: 700, //1850px
+                        xlll: 700, // 2200px
+                    },
+                    // bgcolor: "rgba(255, 255, 255, 0.25)",
+                    marginBottom: "150px",
+                }}
+            >
+                <Router>
+                    {/* <Header /> */}
+                    <Spinner open={isLoading} />
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                isGameOver ? (
+                                    <Scoreboard
+                                        score={score}
+                                        isGameOver={isGameOver}
+                                        isLoading={isLoading}
+                                        setIsLoading={setIsLoading}
+                                    />
+                                ) : !categoryId ? (
+                                    <SelectCategory
+                                        onCategorySelected={
+                                            handleCategorySelection
+                                        }
+                                    />
+                                ) : (
+                                    <Quiz
+                                        categoryId={categoryId}
+                                        score={score}
+                                        setScore={setScore}
+                                        setIsGameOver={setIsGameOver}
+                                        setIsLoading={setIsLoading}
+                                    />
+                                )
+                            }
+                        />
+
+                        <Route
+                            path="/scoreboard"
+                            element={
                                 <Scoreboard
                                     score={score}
                                     isGameOver={isGameOver}
                                     isLoading={isLoading}
                                     setIsLoading={setIsLoading}
                                 />
-                            ) : !categoryId ? (
-                                <SelectCategory
-                                    onCategorySelected={handleCategorySelection}
-                                />
-                            ) : (
-                                <Quiz
-                                    categoryId={categoryId}
-                                    score={score}
-                                    setScore={setScore}
-                                    setIsGameOver={setIsGameOver}
-                                    setIsLoading={setIsLoading}
-                                />
-                            )
-                        }
-                    />
+                            }
+                        />
+                    </Routes>
 
-                    <Route
-                        path="/scoreboard"
-                        element={
-                            <Scoreboard
-                                score={score}
-                                isGameOver={isGameOver}
-                                isLoading={isLoading}
-                                setIsLoading={setIsLoading}
-                            />
-                        }
-                    />
-                </Routes>
-
-                {/* <Footer /> */}
-            </Router>
+                    {/* <Footer /> */}
+                </Router>
+            </Box>
         </ThemeProvider>
     );
 }
