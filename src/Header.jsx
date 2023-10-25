@@ -1,34 +1,50 @@
 import { Link } from "react-router-dom";
 import { AppBar, Box, Toolbar } from "@mui/material";
-import { linkStyles } from "./app_styles";
+import { linkStyles, theme } from "./app_styles";
 
 export default function Header() {
-    return (
-        <Box>
-            <AppBar position="static" sx={{ background: "transparent" }}>
-                <Toolbar
-                    sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <Link
-                        to="/"
-                        style={linkStyles}
-                        onClick={() => setCategoryId(null)}
-                    >
-                        <img
-                            src="./arcadeMaster1.png"
-                            alt="Arcade Master"
-                            height={50}
-                            width={400}
-                        />
-                    </Link>
-                    <Link to="/scoreboard" style={linkStyles}>
-                        Scoreboard
-                    </Link>
-                </Toolbar>
-            </AppBar>
-        </Box>
-    );
+  return (
+    <Box>
+      <AppBar
+        position="static"
+        sx={{
+          background: "transparent",
+          boxShadow: "none",
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            [theme.breakpoints.down("md")]: {
+              flexDirection: "column",
+              alignItems: "center",
+            },
+          }}
+        >
+          <Link
+            to="/"
+            style={{
+              ...linkStyles,
+              display: "flex",
+              justifyContent: "center",
+            }}
+            onClick={() => setCategoryId(null)}
+          >
+            <img
+              src="./arcadeMaster1.png"
+              alt="Arcade Master"
+              style={{
+                // height:50,
+                width: "80%",
+              }}
+            />
+          </Link>
+          <Link to="/scoreboard" style={{ ...linkStyles, fontSize: "1.1rem" }}>
+            Scoreboard
+          </Link>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
 }
