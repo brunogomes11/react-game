@@ -38,8 +38,8 @@ function SelectCategory({ onCategorySelected }) {
                 marginTop: {
                     md: 5,
                     lg: 10,
-                    xll: 30,
-                    xlll: 40,
+                    xll: 15,
+                    xlll: 20,
                 },
                 paddingLeft: {
                     md: 3,

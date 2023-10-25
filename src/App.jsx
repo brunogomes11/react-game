@@ -4,8 +4,8 @@ import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import { theme } from "./app_styles.js";
 import Quiz from "./Quiz";
 import SelectCategory from "./SelectCategory";
-// import Header from "./Header";
-// import Footer from "./Footer";
+import Header from "./Header";
+import Footer from "./Footer";
 import Scoreboard from "./Scoreboard";
 import Spinner from "./Spinner.jsx";
 
@@ -31,9 +31,9 @@ function App() {
                         xs: "auto", //0px
                         sm: 600, //600px
                         md: 650, //900px
-                        lg: 700, //1200px
-                        xl: 750, //1536px
-                        xll: 780, //1850px
+                        lg: 750, //1200px
+                        xl: 800, //1536px
+                        xll: 850, //1850px
                         xlll: 900, //2200px
                     },
                     height: {
@@ -50,7 +50,7 @@ function App() {
                 }}
             >
                 <Router>
-                    {/* <Header /> */}
+                    <Header />
                     <Spinner open={isLoading} />
                     <Routes>
                         <Route
@@ -93,9 +93,8 @@ function App() {
                             }
                         />
                     </Routes>
-
-                    {/* <Footer /> */}
                 </Router>
+                {/* <Footer /> */}
             </Box>
         </ThemeProvider>
     );
