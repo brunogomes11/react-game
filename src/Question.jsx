@@ -21,11 +21,9 @@ const Question = ({
   const onAnswerClick = (choice) => {
     // updates the element style
     setAnswer(choice);
-
+    resetTimer();
     if (choice === currentQuestion.correct_answer) {
       updateScoreState();
-      // CHANGE WHERE THE RESET TIMER IS CALLED
-      resetTimer();
     } else {
       decrementLives();
     }
