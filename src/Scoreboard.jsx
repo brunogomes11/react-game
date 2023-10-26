@@ -123,7 +123,7 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                     >
                       <form onSubmit={postNewPlayer}>
                         <Input
-                          maxLength={3}
+                          maxLength="3"
                           type="text"
                           name="name"
                           id="playerNameInput"
@@ -133,7 +133,7 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                           border="none"
                           sx={{
                             fontSize: ".9rem",
-                            backgroundColor: "rgba(255, 0, 0, 0.25)",
+                            // backgroundColor: "rgba(255, 0, 0, 0.25)",
                             borderRadius: ".2rem",
                             width: "30%",
                           }}
