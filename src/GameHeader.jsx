@@ -23,7 +23,11 @@ function GameHeader({ score, currentQuestionIndex, timer, remainingLives }) {
         {[1, 2, 3, 4, 5].map((el, index) => (
           <img
             key={index}
-            src={el <= remainingLives ? "/fullHeart.png" : "/clearHeart.png"}
+            src={
+              el <= remainingLives
+                ? "/fullHeartEdited.png"
+                : "/clearHeartEdited.png"
+            }
             alt="Heart"
             width={"30rem"}
           />
