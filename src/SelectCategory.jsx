@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { React, useState } from "react";
+import { theme } from "./app_styles";
 
 import {
   Card,
@@ -9,6 +10,7 @@ import {
   Grid,
   Box,
   ButtonBase,
+  useMediaQuery,
 } from "@mui/material";
 
 // insert img into each card using CardMedia, CardContent for the Typography, CardActions for the btn
@@ -22,19 +24,24 @@ function SelectCategory({ onCategorySelected }) {
     { value: 14, label: "Film" },
     { value: 10, label: "Books" },
     { value: 18, label: "Computer Science" },
-    { value: 19, label: "Mathematics" },
+    { value: 19, label: "Math" },
     { value: 22, label: "Geography" },
     { value: 25, label: "Arts" },
     { value: 9, label: "General Knowledge" },
     { value: 17, label: "Science & Nature" },
   ];
 
+  //   useMediaQuery checks the current screen size
+  const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  // if the screen size is md or smaller the grid spacing is 1, otherwise is 3
+  const gridSpacing = isMediumScreen ? 1 : 3;
+
   return (
     <Grid
       container
       data-testid="categories-Grid"
       className="categories-Grid"
-      spacing={3}
+      spacing={gridSpacing}
       sx={{
         marginTop: {
           md: 5,
@@ -49,7 +56,7 @@ function SelectCategory({ onCategorySelected }) {
       }}
     >
       {categories.map((category) => (
-        <Grid item key={category.value} xs={4}>
+        <Grid item key={category.value} xs={6} md={4}>
           <Card
             sx={{
               height: "100%",
