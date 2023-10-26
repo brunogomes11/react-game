@@ -78,7 +78,7 @@ const Question = ({
                                 height: "80%",
                                 backgroundColor:
                                     answer === choice
-                                        ? "success"
+                                        ? "success.main"
                                         : "transparent",
 
                                 "&:hover": {
