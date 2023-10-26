@@ -24,6 +24,7 @@ const Question = ({
 
     if (choice === currentQuestion.correct_answer) {
       updateScoreState();
+      // CHANGE WHERE THE RESET TIMER IS CALLED
       resetTimer();
     } else {
       decrementLives();
@@ -83,9 +84,9 @@ const Question = ({
                 },
               }}
             >
-              <Typography variant="body2" gutterBottom>
-                {choice}
-              </Typography>
+              {/* <Typography variant="body2" gutterBottom> */}
+              {choice}
+              {/* </Typography> */}
             </Button>
           </Grid>
         ))}
