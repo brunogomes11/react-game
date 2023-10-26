@@ -55,6 +55,7 @@ const Question = ({
         </Typography>
       </Grid>
 
+
       <Grid
         item
         className="choices"
@@ -76,6 +77,7 @@ const Question = ({
                 color: "white",
                 width: "80%",
                 height: "80%",
+
 
                 "&:hover": {
                   backgroundColor: "secondary.dark",

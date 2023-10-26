@@ -32,6 +32,7 @@ function SelectCategory({ onCategorySelected }) {
     return (
         <Grid
             container
+            data-testid="categories-Grid"
             className="categories-Grid"
             spacing={3}
             sx={{
