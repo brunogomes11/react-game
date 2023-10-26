@@ -55,7 +55,6 @@ const Question = ({
         </Typography>
       </Grid>
 
-
       <Grid
         item
         className="choices"
@@ -72,12 +71,11 @@ const Question = ({
           <Grid item xs={6} key={index}>
             <Button
               //   callback to check if answer is correct/wrong
-              onClick={(e) => onAnswerClick(e, choice, isCorrect, answer)}
+              onClick={() => onAnswerClick(choice)}
               sx={{
                 color: "white",
                 width: "80%",
                 height: "80%",
-
 
                 "&:hover": {
                   backgroundColor: "secondary.dark",
