@@ -39,7 +39,7 @@ export const theme = createTheme({
             backgroundImage: `
                         url("/background.jpeg")`,
           },
-          [`@media (min-width: ${breakpoints.values.sm}px)`]: {
+          [`@media (min-width: ${breakpoints.values.md}px)`]: {
             backgroundImage: `
                     url("/arcade_interface_wide3.png")`,
           },

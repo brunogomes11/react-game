@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { AppBar, Box, Toolbar } from "@mui/material";
+// import { Link } from "react-router-dom";
+import { AppBar, Box, Toolbar, Link } from "@mui/material";
 import { linkStyles, theme } from "./app_styles";
 
 export default function Header() {
@@ -40,7 +40,16 @@ export default function Header() {
               }}
             />
           </Link>
-          <Link to="/scoreboard" style={{ ...linkStyles, fontSize: "1.1rem" }}>
+          <Link
+            to="/scoreboard"
+            sx={{
+              ...linkStyles,
+              fontSize: "1.1rem",
+              [theme.breakpoints.down("md")]: {
+                mb: "1rem",
+              },
+            }}
+          >
             Scoreboard
           </Link>
         </Toolbar>
