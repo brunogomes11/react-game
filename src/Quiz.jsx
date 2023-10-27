@@ -7,7 +7,7 @@ import Question from "./Question";
 import GameHeader from "./GameHeader";
 import { Box, Dialog } from "@mui/material";
 
-const COUNTDOWN_TIME = 1500000;
+const COUNTDOWN_TIME = 6000000;
 
 function Quiz({ categoryId, score, setScore, setIsGameOver, setIsLoading }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //question index

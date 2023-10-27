@@ -4,7 +4,16 @@ import { linkStyles, theme } from "./app_styles";
 
 export default function Header() {
   return (
-    <Box>
+    <Box
+      sx={{
+        [theme.breakpoints.up("xl")]: {
+          marginTop: "-2rem",
+        },
+        [theme.breakpoints.up("lg")]: {
+          marginTop: "-5rem",
+        },
+      }}
+    >
       <AppBar
         position="static"
         sx={{
