@@ -1,61 +1,74 @@
 import { createTheme } from "@mui/material/styles";
 
 const breakpoints = {
-  values: {
-    xs: 0,
-    sm: 600,
-    md: 900,
-    lg: 1200,
-    xl: 1536,
-    xll: 1850,
-    xlll: 2200,
-  },
+    values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+        xll: 1850,
+        xlll: 2200,
+    },
 };
 
 export const theme = createTheme({
-  typography: {
-    fontFamily: "Pixel",
-  },
-  breakpoints: breakpoints,
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        "@font-face": {
-          fontFamily: "Pixel",
-          src: `url('PublicPixel-z84yD.ttf') format('truetype')`,
-        },
-        body: {
-          backgroundColor: "#23143c",
-          backgroundImage: `
-                    url("/arcadeInterfaceEdited.png")`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          [`@media (min-width: ${breakpoints.values.xs}px)`]: {
-            backgroundImage: `
-                        url("/background.jpeg")`,
-          },
-          [`@media (min-width: ${breakpoints.values.md}px)`]: {
-            backgroundImage: `
-                    url("/arcadeInterfaceEdited.png")`,
-          },
-          [`@media (min-width: ${breakpoints.values.xll}px)`]: {
-            backgroundSize: "contain, cover",
-          },
-          [`@media (min-width: ${breakpoints.values.xlll}px)`]: {
-            backgroundSize: "contain, cover",
-          },
-        },
-      },
+    typography: {
+        fontFamily: "Nintendo",
+        fontSize: 25,
     },
-  },
+    breakpoints: breakpoints,
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                "@font-face": {
+                    fontFamily: "Nintendo",
+                    src: `url('SnesItalic-1G9Be.ttf') format('truetype')`,
+                },
+                //   [
+                //     {
+                //         fontFamily: "Pixel",
+                //         src: `url('PublicPixel-z84yD.ttf') format('truetype')`,
+                //     },
+                //     {
+                //         fontFamily: "Nintendo",
+                //         src: `url('SnesItalic-1G9Be.ttf')`,
+                //     },
+                //     { fontFamily: "Game", src: `url('GamePlayed-vYL7.ttf')` },
+                // ],
+
+                body: {
+                    backgroundColor: "#23143c",
+                    backgroundImage: `
+                    url("/arcadeInterfaceEdited.png")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                    [`@media (min-width: ${breakpoints.values.xs}px)`]: {
+                        backgroundImage: `
+                        url("/background.jpeg")`,
+                    },
+                    [`@media (min-width: ${breakpoints.values.md}px)`]: {
+                        backgroundImage: `
+                    url("/arcadeInterfaceEdited.png")`,
+                    },
+                    [`@media (min-width: ${breakpoints.values.xll}px)`]: {
+                        backgroundSize: "contain, cover",
+                    },
+                    [`@media (min-width: ${breakpoints.values.xlll}px)`]: {
+                        backgroundSize: "contain, cover",
+                    },
+                },
+            },
+        },
+    },
 });
 
 export const linkStyles = {
-  textDecoration: "none",
-  color: "inherit",
+    textDecoration: "none",
+    color: "inherit",
 };
