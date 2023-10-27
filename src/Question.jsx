@@ -54,7 +54,7 @@ const Question = ({
       }}
     >
       <Grid item className="question">
-        <Typography color="white" variant="h6" align="center">
+        <Typography color="white" variant="body1" align="center">
           {/* displays the question */}
           {currentQuestion.question}
         </Typography>
@@ -88,7 +88,12 @@ const Question = ({
                 },
               }}
             >
-              {choice}
+              <Typography
+                variant="body2"
+                sx={{ textTransform: "capitalize !important" }}
+              >
+                {choice}
+              </Typography>
             </Button>
           </Grid>
         ))}
