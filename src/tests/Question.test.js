@@ -54,7 +54,9 @@ test("should handle correct answer", () => {
         />
     );
     const correctAnswerBtn = screen.getByText(mockQuestion.correct_answer);
+
     fireEvent.click(correctAnswerBtn);
+
     expect(mockUpdateScoreState).toBeCalledTimes(1);
 });
 

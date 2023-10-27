@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import { Typography, Grid, Box, Button } from "@mui/material";
 
 const Question = ({
-  nextQuestion,
-  currentQuestion,
-  updateScoreState,
-  decrementLives,
-  resetTimer,
+    nextQuestion,
+    currentQuestion,
+    updateScoreState,
+    decrementLives,
+    resetTimer,
 }) => {
-  const [answer, setAnswer] = useState(null); //set answer to true if its the right one
+    const [answer, setAnswer] = useState(null); //set answer to true if its the right one
 
-  const isCorrect = answer === currentQuestion.correct_answer;
-  console.log(currentQuestion.correct_answer);
+    const isCorrect = answer === currentQuestion.correct_answer;
+    
   // const feedback = isCorrect ? "You got it right!" : "Wrong answer!";
-  const isAnswered = answer !== null;
+    const isAnswered = answer !== null;
 
   // callback triggered when player selects an answer
   const onAnswerClick = (choice) => {
@@ -28,31 +28,13 @@ const Question = ({
       decrementLives();
     }
 
-    //Move to next question
-    nextQuestion();
-  };
+     //Move to next question
+        nextQuestion();
+    };
 
-  useEffect(() => {
-    setAnswer(null);
-  }, [currentQuestion]);
-
-  return (
-    <Grid
-      className="questionComponent"
-      container
-      spacing={1}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Grid item className="question">
-        <Typography color="white" variant="h6" align="center">
-          {/* displays the question */}
-          {currentQuestion.question}
-        </Typography>
-      </Grid>
+    useEffect(() => {
+        setAnswer(null);
+    }, [currentQuestion]);
 
       <Grid
         item
@@ -106,39 +88,39 @@ const Question = ({
           </Typography>
         )} */}
 
-        {isAnswered &&
-          (isCorrect ? (
-            <Box
-              sx={{
-                backgroundImage: `
+                {isAnswered &&
+                    (isCorrect ? (
+                        <Box
+                            sx={{
+                                backgroundImage: `
                     url("/correctAnswer.png")`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                height: "100%",
-                width: "100%",
-                backgroundColor: "rgba(0, 128, 0, 0.25)",
-                borderRadius: ".2rem",
-              }}
-            ></Box>
-          ) : (
-            <Box
-              sx={{
-                backgroundImage: `
+                                backgroundSize: "contain",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center",
+                                height: "100%",
+                                width: "100%",
+                                backgroundColor: "rgba(0, 128, 0, 0.25)",
+                                borderRadius: ".2rem",
+                            }}
+                        ></Box>
+                    ) : (
+                        <Box
+                            sx={{
+                                backgroundImage: `
                 url("/wrongAnswer.png")`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                height: "100%",
-                width: "100%",
-                backgroundColor: "rgba(255, 0, 0, 0.25)",
-                borderRadius: ".2rem",
-              }}
-            ></Box>
-          ))}
-      </Grid>
-    </Grid>
-  );
+                                backgroundSize: "contain",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center",
+                                height: "100%",
+                                width: "100%",
+                                backgroundColor: "rgba(255, 0, 0, 0.25)",
+                                borderRadius: ".2rem",
+                            }}
+                        ></Box>
+                    ))}
+            </Grid>
+        </Grid>
+    );
 };
 
 export default Question;
