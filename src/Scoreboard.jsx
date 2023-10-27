@@ -106,14 +106,12 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                     sx={{
                       color: "success.main",
                       border: "none",
-                      //   fontSize: "1rem",
                       fontWeight: "bold",
                       padding: "0px 16px",
                     }}
                   >
                     {getOrdinalSuffix(sortedData.indexOf(row) + 1)}
                   </TableCell>
-
                   {/* element for player to input their name */}
                   {row.name === "" && !isSubmitted ? (
                     <TableCell
@@ -141,7 +139,6 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                             "& .MuiInput-input": {
                               textAlign: "center",
                             },
-                            // fontSize: ".9rem",
                             borderRadius: ".2rem",
                             width: "30%",
 
@@ -168,7 +165,6 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                       sx={{
                         color: "info.main",
                         border: "none",
-                        // fontSize: ".9rem",
                         padding: "0px 16px",
                       }}
                     >
@@ -182,7 +178,6 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
                       color: "warning.main",
                       align: "center",
                       border: "none",
-                      //   fontSize: ".9rem",
                       padding: "0px 16px",
                     }}
                   >
