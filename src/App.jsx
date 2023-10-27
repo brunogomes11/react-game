@@ -45,7 +45,7 @@ function App() {
                         xll: 700, //1850px
                         xlll: 700, // 2200px
                     },
-                    // bgcolor: "rgba(255, 255, 255, 0.25)",
+
                     marginBottom: "150px",
                 }}
             >

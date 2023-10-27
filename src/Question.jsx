@@ -4,141 +4,129 @@ import { useEffect, useState } from "react";
 import { Typography, Grid, Box, Button } from "@mui/material";
 
 const Question = ({
-  nextQuestion,
-  currentQuestion,
-  updateScoreState,
-  decrementLives,
-  resetTimer,
+    nextQuestion,
+    currentQuestion,
+    updateScoreState,
+    decrementLives,
+    resetTimer,
 }) => {
-  const [answer, setAnswer] = useState(null); //set answer to true if its the right one
+    const [answer, setAnswer] = useState(null); //set answer to true if its the right one
 
-  const isCorrect = answer === currentQuestion.correct_answer;
+    const isCorrect = answer === currentQuestion.correct_answer;
 
-  // const feedback = isCorrect ? "You got it right!" : "Wrong answer!";
-  const isAnswered = answer !== null;
+    const isAnswered = answer !== null;
 
-  // callback triggered when player selects an answer
-  const onAnswerClick = (choice) => {
-    // updates the element style
-    setAnswer(choice);
-    resetTimer();
-    if (choice === currentQuestion.correct_answer) {
-      updateScoreState();
-    } else {
-      decrementLives();
-    }
+    // callback triggered when player selects an answer
+    const onAnswerClick = (choice) => {
+        // updates the element style
+        setAnswer(choice);
+        resetTimer();
+        if (choice === currentQuestion.correct_answer) {
+            updateScoreState();
+        } else {
+            decrementLives();
+        }
 
-    //Move to next question
-    nextQuestion();
-  };
+        //Move to next question
+        nextQuestion();
+    };
 
-  useEffect(() => {
-    setAnswer(null);
-  }, [currentQuestion]);
+    useEffect(() => {
+        setAnswer(null);
+    }, [currentQuestion]);
 
-  return (
-    <Grid
-      className="questionComponent"
-      container
-      spacing={1}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Grid item className="question">
-        <Typography color="white" variant="h6" align="center">
-          {/* displays the question */}
-          {currentQuestion.question}
-        </Typography>
-      </Grid>
+    return (
+        <Grid
+            className="questionComponent"
+            container
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}
+        >
+            <Grid item className="question">
+                <Typography color="white" variant="h6" align="center">
+                    {/* displays the question */}
+                    {currentQuestion.question}
+                </Typography>
+            </Grid>
 
-      <Grid
-        item
-        className="choices"
-        container
-        spacing={2}
-        marginTop="30px"
-        align="center"
-        sx={{
-          pointerEvents: !isAnswered ? "auto" : "none",
-        }}
-      >
-        {/* list the answer choices */}
-        {currentQuestion.choices.map((choice, index) => (
-          <Grid item xs={6} key={index}>
-            <Button
-              //   callback to check if answer is correct/wrong
-              onClick={() => onAnswerClick(choice)}
-              sx={{
-                color: "white",
-                width: "80%",
-                height: "80%",
-
-                "&:hover": {
-                  backgroundColor: "secondary.dark",
-                  cursor: "pointer",
-                },
-              }}
+            <Grid
+                item
+                className="choices"
+                container
+                spacing={2}
+                marginTop="30px"
+                align="center"
+                sx={{
+                    pointerEvents: !isAnswered ? "auto" : "none",
+                }}
             >
-              {/* <Typography variant="body2" gutterBottom> */}
-              {choice}
-              {/* </Typography> */}
-            </Button>
-          </Grid>
-        ))}
-      </Grid>
+                {/* list the answer choices */}
+                {currentQuestion.choices.map((choice, index) => (
+                    <Grid item xs={6} key={index}>
+                        <Button
+                            //   callback to check if answer is correct/wrong
+                            onClick={() => onAnswerClick(choice)}
+                            sx={{
+                                color: "white",
+                                width: "80%",
+                                height: "80%",
 
-      <Grid
-        item
-        className="feedback"
-        sx={{
-          position: "absolute",
-          width: "15rem",
-          height: "15rem",
-          padding: "0",
-        }}
-      >
-        {/* {isAnswered && (
-          <Typography variant="h6" sx={{ color: isCorrect ? "green" : "red" }}>
-            {feedback}
-          </Typography>
-        )} */}
+                                "&:hover": {
+                                    backgroundColor: "secondary.dark",
+                                    cursor: "pointer",
+                                },
+                            }}
+                        >
+                            {choice}
+                        </Button>
+                    </Grid>
+                ))}
+            </Grid>
 
-        {isAnswered &&
-          (isCorrect ? (
-            <Box
-              sx={{
-                backgroundImage: `
-                    url("/correctAnswer.png")`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                height: "100%",
-                width: "100%",
-                backgroundColor: "rgba(0, 128, 0, 0.25)",
-                borderRadius: ".2rem",
-              }}
-            ></Box>
-          ) : (
-            <Box
-              sx={{
-                backgroundImage: `
-                url("/wrongAnswer.png")`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                height: "100%",
-                width: "100%",
-                backgroundColor: "rgba(255, 0, 0, 0.25)",
-                borderRadius: ".2rem",
-              }}
-            ></Box>
-          ))}
-      </Grid>
-    </Grid>
-  );
+            <Grid
+                item
+                className="feedback"
+                sx={{
+                    position: "absolute",
+                    width: "13rem",
+                    height: "13rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                {isAnswered &&
+                    (isCorrect ? (
+                        <Box
+                            component="img"
+                            sx={{
+                                backgroundColor: "rgba(0, 128, 0, 0.25)",
+                                borderRadius: ".2rem",
+                                height: 100,
+                                width: 500,
+                                paddingRight: "10px",
+                            }}
+                            src="/correctAnswer.png"
+                        ></Box>
+                    ) : (
+                        <Box
+                            component="img"
+                            sx={{
+                                backgroundColor: "rgba(255, 0, 0, 0.25)",
+                                borderRadius: ".2rem",
+                                height: 100,
+                                width: 500,
+                                paddingRight: "10px",
+                            }}
+                            src="/wrongAnswer.png"
+                        ></Box>
+                    ))}
+            </Grid>
+        </Grid>
+    );
 };
 
 export default Question;
