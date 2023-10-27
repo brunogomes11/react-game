@@ -31,7 +31,7 @@ const Question = ({
     //Move to next question
     nextQuestion();
   };
-
+  console.log(currentQuestion.correct_answer);
   useEffect(() => {
     setAnswer(null);
   }, [currentQuestion]);
@@ -47,8 +47,14 @@ const Question = ({
         alignItems: "center",
       }}
     >
-      <Grid item className="question">
-        <Typography color="white" variant="h6" align="center">
+      <Grid
+        item
+        className="question"
+        sx={{
+          width: "100%",
+        }}
+      >
+        <Typography color="white" variant="body1" align="center">
           {/* displays the question */}
           {currentQuestion.question}
         </Typography>
@@ -82,9 +88,9 @@ const Question = ({
                 },
               }}
             >
-              {/* <Typography variant="body2" gutterBottom> */}
-              {choice}
-              {/* </Typography> */}
+              <Typography variant="body2" sx={{ textTransform: "capitalize" }}>
+                {choice}
+              </Typography>
             </Button>
           </Grid>
         ))}
