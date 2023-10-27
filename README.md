@@ -5,6 +5,7 @@
 Application deployed :arrow_forward: [click here](https://arcademaster.onrender.com/) :arrow_backward:
 
 <img src="./public/readme2.png width="600" height="300">
+![mainGame](./public/readme2.png)
 
 Welcome to the MERN Stack Trivia Game repository. This trivia game is an interactive platform where users answer questions from a chosen category. Your progress and score are tracked, and at the end, you can add your name to the scoreboard.
 
