@@ -27,7 +27,7 @@ export const theme = createTheme({
         body: {
           backgroundColor: "#23143c",
           backgroundImage: `
-                    url("/arcade_interface_wide3.png")`,
+                    url("/arcadeInterfaceEdited.png")`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -39,9 +39,9 @@ export const theme = createTheme({
             backgroundImage: `
                         url("/background.jpeg")`,
           },
-          [`@media (min-width: ${breakpoints.values.sm}px)`]: {
+          [`@media (min-width: ${breakpoints.values.md}px)`]: {
             backgroundImage: `
-                    url("/arcade_interface_wide3.png")`,
+                    url("/arcadeInterfaceEdited.png")`,
           },
           [`@media (min-width: ${breakpoints.values.xll}px)`]: {
             backgroundSize: "contain, cover",

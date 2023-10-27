@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { linkStyles, theme } from "./app_styles";
 
 export default function Header() {
   return (
-    <Box>
+    <Box
+      sx={{
+        [theme.breakpoints.up("xl")]: {
+          marginTop: "-2rem",
+        },
+        [theme.breakpoints.up("lg")]: {
+          marginTop: "-5rem",
+        },
+      }}
+    >
       <AppBar
         position="static"
         sx={{
@@ -40,8 +49,22 @@ export default function Header() {
               }}
             />
           </Link>
-          <Link to="/scoreboard" style={{ ...linkStyles, fontSize: "1.1rem" }}>
-            Scoreboard
+          <Link
+            to="/scoreboard"
+            style={{
+              ...linkStyles,
+              fontSize: "1.1rem",
+            }}
+          >
+            <Typography
+              sx={{
+                [theme.breakpoints.down("md")]: {
+                  mb: "1rem",
+                },
+              }}
+            >
+              Scoreboard
+            </Typography>
           </Link>
         </Toolbar>
       </AppBar>
