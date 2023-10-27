@@ -44,8 +44,8 @@ function Quiz({ categoryId, score, setScore, setIsGameOver, setIsLoading }) {
   };
 
   // updates the score state. It is triggered by the onAnswerClick call back in the question.jsx when the player gets the answer correct
-  const updateScoreState = () => {
-    setScore(score + 10);
+  const updateScoreState = (secondsRemaining) => {
+    setScore(score + secondsRemaining);
   };
 
   // fetch data to get questions. This need to move into the category component so the user can select the category of the questions
@@ -177,6 +177,7 @@ function Quiz({ categoryId, score, setScore, setIsGameOver, setIsLoading }) {
         currentQuestion={currentQuestion}
         decrementLives={decrementLives}
         resetTimer={resetTimer}
+        endTimeRef={endTimeRef}
       />
     </Box>
   );

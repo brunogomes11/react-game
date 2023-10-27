@@ -9,6 +9,7 @@ const Question = ({
   updateScoreState,
   decrementLives,
   resetTimer,
+  endTimeRef,
 }) => {
   const [answer, setAnswer] = useState(null); //set answer to true if its the right one
 
@@ -22,7 +23,13 @@ const Question = ({
     setAnswer(choice);
 
     if (choice === currentQuestion.correct_answer) {
-      updateScoreState();
+      const currentTime = Date.now();
+      const secondsRemaining = Math.max(
+        0,
+        Math.ceil((endTimeRef.current - currentTime) / 1000)
+      );
+      updateScoreState(secondsRemaining);
+      //   console.log(`Seconds remaining: ${secondsRemaining}`);
       resetTimer();
     } else {
       decrementLives();

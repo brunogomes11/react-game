@@ -30,10 +30,10 @@ function SelectCategory({ onCategorySelected }) {
     { value: 17, label: "Science & Nature" },
   ];
 
-  //   //   useMediaQuery checks the current screen size
-  //   const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
-  //   // if the screen size is md or smaller the grid spacing is 1, otherwise is 3
-  //   const gridSpacing = isMediumScreen ? 1 : 3;
+  // //   useMediaQuery checks the current screen size
+  // const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  // // if the screen size is md or smaller the grid spacing is 1, otherwise is 3
+  // const gridSpacing = isMediumScreen ? 1 : 3;
 
   return (
     <Grid
