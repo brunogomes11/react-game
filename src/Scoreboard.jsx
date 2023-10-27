@@ -89,30 +89,21 @@ function Scoreboard({ score, isGameOver, isLoading, setIsLoading }) {
             <Spinner open={isLoading} />
             {/* test error message but duplicates not working yet */}
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            <TableContainer
-                sx={{
-                    width: "100%",
-                    height: "100%",
-                }}
-            >
+            <TableContainer>
                 <Table
                     sx={{
                         mt: "3rem",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
                     }}
                     size="small"
                 >
-                    <TableBody sx={{ border: "none" }}>
+                    <TableBody>
                         {sortedData
                             // Filter players: top 10 and any player with an empty name
                             .filter(
                                 (row, index) => index < 10 || row.name === ""
                             )
                             .map((row, index) => (
-                                <TableRow key={index} sx={{ border: "none" }}>
+                                <TableRow key={index}>
                                     {/* Get the ordinal ranking based on the original sortedData array */}
                                     <TableCell
                                         align="center"

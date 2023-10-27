@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 
-import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import { render, screen, cleanup, fireEvent } from "@testing-library/react";
+// import userEvent from "@testing-library/user-event";
 
 import SelectCategory from "../SelectCategory";
 
@@ -8,6 +9,7 @@ afterEach(cleanup);
 
 test("should render SelectCategory component", () => {
     render(<SelectCategory onCategorySelected={() => {}} />);
+
     const gridElement = screen.getByTestId("categories-Grid");
     expect(gridElement).toBeInTheDocument();
 });
@@ -19,7 +21,7 @@ test("should render all categories", () => {
         "Film",
         "Books",
         "Computer Science",
-        "Mathematics",
+        "Math",
         "Geography",
         "Arts",
         "General Knowledge",
@@ -36,7 +38,7 @@ test("should call onCategorySelected with correct category ID when category is c
 
     render(<SelectCategory onCategorySelected={mockOnCategorySelected} />);
 
-    const videoGameCategory = screen.getByText("Video Game").closest("button");
+    const videoGameCategory = screen.getByText("Video Game");
     fireEvent.click(videoGameCategory);
 
     expect(mockOnCategorySelected).toHaveBeenCalledWith(15);
