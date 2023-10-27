@@ -25,18 +25,6 @@ export const theme = createTheme({
           fontFamily: "Nintendo",
           src: `url('SnesItalic-1G9Be.ttf') format('truetype')`,
         },
-        //   [
-        //     {
-        //         fontFamily: "Pixel",
-        //         src: `url('PublicPixel-z84yD.ttf') format('truetype')`,
-        //     },
-        //     {
-        //         fontFamily: "Nintendo",
-        //         src: `url('SnesItalic-1G9Be.ttf')`,
-        //     },
-        //     { fontFamily: "Game", src: `url('GamePlayed-vYL7.ttf')` },
-        // ],
-
         body: {
           backgroundColor: "#23143c",
           backgroundImage: `

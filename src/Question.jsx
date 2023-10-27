@@ -29,12 +29,10 @@ const Question = ({
         Math.ceil((endTimeRef.current - currentTime) / 1000)
       );
       updateScoreState(secondsRemaining);
-      //   console.log(`Seconds remaining: ${secondsRemaining}`);
       resetTimer();
     } else {
       decrementLives();
     }
-
     //Move to next question
     nextQuestion();
   };

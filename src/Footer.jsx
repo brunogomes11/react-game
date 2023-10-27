@@ -1,14 +1,11 @@
 import React from "react";
 import {
-  Button,
   AppBar,
   Box,
   Toolbar,
   Typography,
-  Container,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
 } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
