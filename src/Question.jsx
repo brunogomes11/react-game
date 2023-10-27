@@ -76,7 +76,7 @@ const Question = ({
         item
         className="feedback"
         sx={{
-          position: "absolute",
+            position: "absolute",
           width: "15rem",
           height: "15rem",
           padding: "0",
