@@ -77,13 +77,13 @@ Additional technologies and tools:
 
 3. **Scoring System**: Keeps track of scores and lives for each quiz round.
 
-4. **Leaderboard**: Displays the top scores from all players.
+4. **Scoreboard**: Displays the top scores from all players.
 
 5. **Responsive Design**: The design is responsive and adapts to various screen sizes using Material-UI's `useMediaQuery`.
 
 ## App Flow and Wireframes
 
--- Our first idea for the project
+Our first idea for the project
 
 1. **Landing Page**:
 
