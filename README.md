@@ -311,7 +311,8 @@ This will start the test runner, and you should see the test results shortly.
 
 ## Project Management
 
--   We are using a Trello board to manage and track how this project is going, and it's available here: [https://trello.com/b/ybbASD22/trivia-game-project](https://trello.com/b/ybbASD22/trivia-game-project)
+-   We are using a Trello board to manage and track how this project is going
+-   ![trello](./public/trello.png)
 
 ## Unsolved Problems
 
