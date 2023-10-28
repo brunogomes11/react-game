@@ -160,7 +160,6 @@ function Quiz({ categoryId, score, setScore, setIsGameOver, setIsLoading }) {
           },
         }}
       >
-        {/* <DialogTitle>Game Over</DialogTitle> */}
         <img src="/gameover.png"></img>
       </Dialog>
 

@@ -3,14 +3,11 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const ViteExpress = require("vite-express");
 
-// const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 const Model = require("./model");
 
 const app = express();
 app.use(express.json());
-
-// const PORT = 5000;
 
 const cors = require("cors");
 app.use(cors());

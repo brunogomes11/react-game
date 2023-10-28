@@ -4,7 +4,6 @@
 
 Application deployed :arrow_forward: [click here](https://arcademaster.onrender.com/) :arrow_backward:
 
-<img src="./public/readme2.png width="600" height="300">
 ![mainGame](./public/readme2.png)
 
 Welcome to the MERN Stack Trivia Game repository. This trivia game is an interactive platform where users answer questions from a chosen category. Your progress and score are tracked, and at the end, you can add your name to the scoreboard.
@@ -78,13 +77,13 @@ Additional technologies and tools:
 
 3. **Scoring System**: Keeps track of scores and lives for each quiz round.
 
-4. **Leaderboard**: Displays the top scores from all players.
+4. **Scoreboard**: Displays the top scores from all players.
 
 5. **Responsive Design**: The design is responsive and adapts to various screen sizes using Material-UI's `useMediaQuery`.
 
 ## App Flow and Wireframes
 
--- Our first idea for the project
+Our first idea for the project
 
 1. **Landing Page**:
 
@@ -250,17 +249,13 @@ This will start the test runner, and you should see the test results shortly.
 
     - **Rendering**: The `Question` component is rendered with mock properties.
 
-    - **Assertions**:
-
-    - Check if the rendered component displays the correct question text.
+    - **Assertions**: Check if the rendered component displays the correct question text.
 
 2. **Test**: "should display all answer choices"
 
     - **Rendering**: The `Question` component is rendered with mock properties.
 
-    - **Assertions**:
-
-    - Iterate each choice in `mockQuestion` and validate that they are present in the document.
+    - **Assertions**: Iterate each choice in `mockQuestion` and validate that they are present in the document.
 
 3. **Test**: "should handle the correct answer."
 
@@ -270,9 +265,7 @@ This will start the test runner, and you should see the test results shortly.
 
     - **User Interaction**: Simulate a user by clicking the correct answer button.
 
-    - **Assertions**:
-
-    - Validate that the `updateScoreState` function was called once.
+    - **Assertions**: Validate that the `updateScoreState` function was called once.
 
 4. **Test**: "Should handle the wrong answer."
 
@@ -282,9 +275,7 @@ This will start the test runner, and you should see the test results shortly.
 
     - **User Interaction**: Simulate a user clicking on a wrong answer button.
 
-    - **Assertions**:
-
-    - Validate that the `decrementLives` function was called once.
+    - **Assertions**: Validate that the `decrementLives` function was called once.
 
 5. `<Scoreboard />` Component:
 
@@ -300,17 +291,13 @@ This will start the test runner, and you should see the test results shortly.
 
     - **Rendering**: The `SelectCategory` component is rendered with a mock function for the `onCategorySelected` prop.
 
-    - **Assertions**:
-
-    - Validate that the grid (which holds the categories) is present in the rendered component using a `data-testid`.
+    - **Assertions**: Validate that the grid (which holds the categories) is present in the rendered component using a `data-testid`.
 
 2. **Test**: "should render all categories"
 
     - **Rendering**: The `SelectCategory` component is rendered similarly to the previous test.
 
-    - **Assertions**:
-
-    - Loop through each category in the predefined list and check if they are in the rendered component.
+    - **Assertions**: Loop through each category in the predefined list and check if they are in the rendered component.
 
 3. **Test**: "should call onCategorySelected with correct category ID when the category is clicked"
 
@@ -320,9 +307,7 @@ This will start the test runner, and you should see the test results shortly.
 
     - **User Interaction**: The "Video Game" category is clicked.
 
-    - **Assertions**:
-
-    - Check if the `onCategorySelected` function was called with the correct category ID for "Video Game", which is 15.
+    - **Assertions**: Check if the `onCategorySelected` function was called with the correct category ID for "Video Game", which is 15.
 
 ## Project Management
 
@@ -330,9 +315,15 @@ This will start the test runner, and you should see the test results shortly.
 
 ## Unsolved Problems
 
+- Mobile:
+    - Background stays on after selecting an answer
+    - When entering input name, you need to click "return" on keyboard to post to the database
+
 ## Future Improvements
 
 -   Being able to play against someone live
+  
+-   Sound effect 
 
 -   Chat room for real-time interaction between players
 
